@@ -1,0 +1,8 @@
+{
+  "name": "AsisPet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "f9e6d5a7"
+}
