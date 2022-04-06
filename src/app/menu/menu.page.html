@@ -1,0 +1,54 @@
+<ion-content id="principal">
+    <div class="main_content_div">
+        <ion-buttons slot="start" class="menu_btn">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+        <div class="user_div">
+            <div class="first_div">
+                <ion-label class="welcome">Bienvenido</ion-label>
+                <ion-label class="username">amilcar dominguez</ion-label>
+            </div>
+            <div class="user_back" [style.backgroundImage]="'url(assets/icon/foto.jpg)'"></div>
+        </div>
+        <div class="content_div">
+            <!-- <ion-label class="hello_lbl">Hello, please</ion-label> -->
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="6">
+                        <div class="col_div">
+                            <img src="assets/icon/perfil.png" routerLink="/perfil-usuario">
+                            <ion-label>MI PERFIL</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="col_div">
+                            <img src="assets/icon/mascota.png" routerLink="/mascotas">
+                            <ion-label>MIS MASCOTAS</ion-label>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div class="col_div">
+                            <img src="assets/icon/entretenimiento.png">
+                            <ion-label>ENTRETENIMIENTO</ion-label>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>
+<ion-menu side="start" contentId="principal">
+    <ion-content>
+
+        <ion-list>
+            <ion-item>
+                <ion-icon name="construct-outline"></ion-icon>
+                <ion-label>CONFIGURACION</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="log-out-outline"></ion-icon>
+                <ion-label>CERRAR SESION</ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>

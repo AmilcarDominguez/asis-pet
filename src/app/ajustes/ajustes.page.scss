@@ -1,0 +1,21 @@
+ion-content {
+    --background: #00141e;
+}
+
+.logo {
+    width: 75%;
+}
+
+.ajustes-seccion {
+    height: 83vh;
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    right: 0;
+    left: 0;
+    bottom: 0%;
+    position: fixed;
+    margin: auto;
+    border-top-left-radius: 46px;
+    border-top-right-radius: 46px;
+}
