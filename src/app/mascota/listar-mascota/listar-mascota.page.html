@@ -6,29 +6,23 @@
         </ion-buttons>
         <div class="content_div">
             <h1>MIS MASCOTAS</h1>
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="10">
-                        <div class="col_div">
-                            <ion-list>
-                                <ion-item>
-                                    <ion-avatar slot="start">
-                                        <img src="/assets/icon/mascota.png" />
-                                    </ion-avatar>
-                                    <ion-label>
-                                        <h2>NOMBRE</h2>
-                                        <h3>PERRO</h3>
-                                        <h3>MACHO</h3>
-                                    </ion-label>
-                                    <div class="accion-boton ion-padding">
-                                        <ion-button class="editar-boton" routerLink="/guardar-mascota">NUEVO</ion-button>
-                                    </div>
-                                </ion-item>
-                            </ion-list>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
+            <ion-list>
+                <ion-item color="primary" *ngFor="let c of [1]">
+                    <ion-avatar>
+                        <img src="/assets/icon/mascota.png" />
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>NOMBRE</h2>
+                        <h3>PERRO</h3>
+                        <h3>MACHO</h3>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
         </div>
     </div>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="danger" routerLink="/guardar-mascota">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
