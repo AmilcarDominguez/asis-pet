@@ -41,6 +41,18 @@ const routes: Routes = [
   {
     path: 'guardar-mascota',
     loadChildren: () => import('./mascota/guardar-mascota/guardar-mascota.module').then( m => m.GuardarMascotaPageModule)
+  },
+  {
+    path: 'editar-mascota',
+    loadChildren: () => import('./mascota/editar-mascota/editar-mascota.module').then( m => m.EditarMascotaPageModule)
+  },
+  {
+    path: 'listar-gastos',
+    loadChildren: () => import('./mascota/listar-gastos/listar-gastos.module').then( m => m.ListarGastosPageModule)
+  },
+  {
+    path: 'guardar-gastos',
+    loadChildren: () => import('./mascota/guardar-gastos/guardar-gastos.module').then( m => m.GuardarGastosPageModule)
   }
 
 ];
