@@ -2,22 +2,6 @@ ion-content {
     --background: linear-gradient(to right, #00141e, #00141e);
 }
 
-ion-list {
-    margin-top: 150px;
-    ion-icon {
-        top: 37px;
-        z-index: 2;
-        font-size: 1.2rem;
-        left: 5px;
-    }
-    ion-label {
-        margin-left: 35px;
-        font-weight: bolder;
-        font-size: 0.8rem;
-        top: 3px;
-    }
-}
-
 .main_content_div {
     width: 100%;
     .menu_btn {
@@ -40,6 +24,7 @@ ion-list {
         justify-content: space-between;
         .first_div {
             padding-top: 35px;
+            margin-left: 30px;
             .welcome {
                 font-size: 18px;
                 color: #fff;
@@ -101,6 +86,27 @@ ion-list {
                 color: #000;
                 margin-top: 5px;
             }
+        }
+    }
+}
+
+.menu_lateral {
+    img {
+        width: 100%;
+    }
+    ion-list {
+        margin-top: 40px;
+        ion-icon {
+            top: 37px;
+            z-index: 2;
+            font-size: 1.2rem;
+            left: 5px;
+        }
+        ion-label {
+            margin-left: 35px;
+            font-weight: bolder;
+            font-size: 0.8rem;
+            top: 3px;
         }
     }
 }
