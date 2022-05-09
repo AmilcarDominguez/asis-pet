@@ -5,17 +5,17 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
-            <h1>REGISTRO DE GASTO</h1>
+            <h1>REGISTRO DE VACUNAS</h1>
             <ion-grid>
                 <ion-row>
                     <ion-col size="10">
                         <div class="col_div">
                             <ion-list>
                                 <ion-item>
-                                    <ion-textarea type="text" value="" placeholder="DESCRIPCION"></ion-textarea>
+                                    <ion-input type="text" value="" placeholder="DENOMINACION DE VACUNA"></ion-input>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-input [value]="dateValue2" placeholder="FECHA DEL GASTO" readonly></ion-input>
+                                    <ion-input [value]="dateValue2" placeholder="FECHA DE VACUNACION" readonly></ion-input>
                                     <ion-button fill="clear" id="open-date-input-2">
                                         <ion-icon icon="calendar"></ion-icon>
                                     </ion-button>
@@ -27,7 +27,7 @@
                                     </ion-popover>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-input type="number" value="" placeholder="MONTO"></ion-input>
+                                    <ion-textarea type="text" value="" placeholder="NOTAS"></ion-textarea>
                                 </ion-item>
                             </ion-list>
                         </div>
@@ -35,7 +35,7 @@
                 </ion-row>
             </ion-grid>
             <div class="accion-boton">
-                <ion-button class="guardar-boton" routerLink="/listar-gastos">GUARDAR</ion-button>
+                <ion-button class="guardar-boton" routerLink="/listar-vacunas">GUARDAR</ion-button>
             </div>
         </div>
     </div>

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { format, parseISO } from 'date-fns';
 
 @Component({
-  selector: 'app-guardar-gastos',
-  templateUrl: './guardar-gastos.page.html',
-  styleUrls: ['./guardar-gastos.page.scss'],
+  selector: 'app-guardar-vacunas',
+  templateUrl: './guardar-vacunas.page.html',
+  styleUrls: ['./guardar-vacunas.page.scss'],
 })
-export class GuardarGastosPage implements OnInit {
+export class GuardarVacunasPage implements OnInit {
   dateValue = '';
   dateValue2 = '';
   constructor() { }
@@ -16,5 +16,4 @@ export class GuardarGastosPage implements OnInit {
   formatDate(value: string) {
     return format(parseISO(value), 'MMM dd yyyy');
   }
-
 }

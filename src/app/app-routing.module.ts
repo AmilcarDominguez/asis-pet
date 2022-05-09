@@ -53,6 +53,30 @@ const routes: Routes = [
   {
     path: 'guardar-gastos',
     loadChildren: () => import('./mascota/guardar-gastos/guardar-gastos.module').then( m => m.GuardarGastosPageModule)
+  },
+  {
+    path: 'listar-vacunas',
+    loadChildren: () => import('./mascota/listar-vacunas/listar-vacunas.module').then( m => m.ListarVacunasPageModule)
+  },
+  {
+    path: 'guardar-vacunas',
+    loadChildren: () => import('./mascota/guardar-vacunas/guardar-vacunas.module').then( m => m.GuardarVacunasPageModule)
+  },
+  {
+    path: 'listar-banho',
+    loadChildren: () => import('./mascota/listar-banho/listar-banho.module').then( m => m.ListarBanhoPageModule)
+  },
+  {
+    path: 'guardar-banho',
+    loadChildren: () => import('./mascota/guardar-banho/guardar-banho.module').then( m => m.GuardarBanhoPageModule)
+  },
+  {
+    path: 'listar-peluqueria',
+    loadChildren: () => import('./mascota/listar-peluqueria/listar-peluqueria.module').then( m => m.ListarPeluqueriaPageModule)
+  },
+  {
+    path: 'guardar-peluqueria',
+    loadChildren: () => import('./mascota/guardar-peluqueria/guardar-peluqueria.module').then( m => m.GuardarPeluqueriaPageModule)
   }
 
 ];

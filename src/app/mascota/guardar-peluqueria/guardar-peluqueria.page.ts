@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { format, parseISO } from 'date-fns';
 
 @Component({
-  selector: 'app-guardar-gastos',
-  templateUrl: './guardar-gastos.page.html',
-  styleUrls: ['./guardar-gastos.page.scss'],
+  selector: 'app-guardar-peluqueria',
+  templateUrl: './guardar-peluqueria.page.html',
+  styleUrls: ['./guardar-peluqueria.page.scss'],
 })
-export class GuardarGastosPage implements OnInit {
+export class GuardarPeluqueriaPage implements OnInit {
   dateValue = '';
   dateValue2 = '';
   constructor() { }
