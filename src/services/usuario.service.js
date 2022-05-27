@@ -1,12 +1,12 @@
 const { usuarioModel } = require("../models/usuario.model");
-const { sequelize } = require("./bd.service.js");
+const { sequelize } = require("../bd.service.js");
 const { QueryTypes } = require("sequelize");
 
 const list = async(query, pageStart = 1, pageLimit = 10) => {
     const usuarioModelResult = await usuarioModel.findAll();
 
     const usuarioArray = new Array();
-    for (let i = 0; i < usuarioModelResult.length; i++) {
+    for (let i = 0; i < usuarioModelResult.length; i++) {   
         const usuarioResult = usuarioModelResult[i];
         usuarioArray.push(usuarioResult.dataValues);
     }

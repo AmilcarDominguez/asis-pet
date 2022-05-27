@@ -2,32 +2,32 @@ const { timeStamp } = require("console");
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../services/bd.service.js");
 
-const usuarioModel = sequelize.define(
-    'usuario', {
-        usu_codigo: {
+const vacunacionModel = sequelize.define(
+    'vacunacion', {
+        vac_codigo: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        usu_nombre: {
+        vac_denominacion: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        usu_correo: {
-            type: DataTypes.STRING,
+        vac_fecha: {
+            type: DataTypes.DATE,
             allowNull: false,
         },
-        usu_contra: {
+        vac_notas: {
             type: DataTypes.STRING,
             allowNull: false,
         }
     }, {
-        tableName: 'usuario',
+        tableName: 'vacunacion',
         timestamp: false
     }
 );
 
 module.exports = {
-    usuarioModel,
+    vacunacionModel,
 };

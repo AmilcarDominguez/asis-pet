@@ -1,40 +1,40 @@
 const { Module } = require('module');
-const gastoService = require('../services/gasto-mascota.service');
+const vacunacionService = require('../services/vacunacion-mascota.service');
 
 const list = async(req, res) => {
-    const gasto = await gastoService.list(req.query.q);
+    const vacunacion = await vacunacionService.list(req.query.q);
     res.send({
         success: true,
-        gasto
+        vacunacion
     });
 }
 const getById = async(req, res) => {
-    const gasto = await gastoService.getById(req.query.id);
+    const vacunacion = await vacunacionService.getById(req.query.id);
     let jsonResultado = req.query;
     jsonResultado['success'] = true;
-    jsonResultado['gasto'] = gasto;
+    jsonResultado['vacunacion'] = vacunacion;
 
     res.status(201).send(jsonResultado);
 }
 
 const create = async(req, res) => {
-    const gasto = await gastoService.create(req.body);
+    const vacunacion = await vacunacionService.create(req.body);
     res.status(202).send({
         success: true,
-        gasto
+        vacunacion
     });
 }
 
 const update = async(req, res) => {
-    const gasto = await gastoService.update(req.body);
+    const vacunacion = await vacunacionService.update(req.body);
     res.status(202).send({
         success: true,
-        gasto
+        vacunacion
     });
 }
 
 const remove = async(req, res) => {
-    const booleanValue = await gastoService.remove(req.params.id);
+    const booleanValue = await vacunacionService.remove(req.params.id);
     res.status(202).send({
         success: booleanValue,
     });

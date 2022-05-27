@@ -11,4 +11,7 @@ app.use(bodyparser());
 require('./routes/usuario.route')(app);
 require('./routes/mascota.route')(app);
 require('./routes/gasto-mascota.route')(app);
+require('./routes/vacunacion-mascota.route')(app);
+require('./routes/peluqueria-mascota.route')(app);
+require('./routes/banho-mascota.route')(app);
 app.listen(3000)
