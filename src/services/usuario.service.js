@@ -1,6 +1,8 @@
 const { usuarioModel } = require("../models/usuario.model");
-const { sequelize } = require("../bd.service.js");
+const { sequelize } = require("../services/bd.service.js");
 const { QueryTypes } = require("sequelize");
+const jwt = require('jsonwebtoken');
+const { query } = require("express");
 
 const list = async(query, pageStart = 1, pageLimit = 10) => {
     const usuarioModelResult = await usuarioModel.findAll();
@@ -63,11 +65,55 @@ const remove = async(usu_codigo) => {
         return false;
     }
 };
+const login = async(data) => {
+    console.log("login data", data);
+    let usuarioResult = await sequelize.query(`SELECT usu_codigo, usu_nombre FROM usuario 
+                                            WHERE usu_nombre = :n
+                                            AND usu_contra = :p LIMIT 1`, {
+                                                replacements: {
+                                                n: data.usu_nombre,
+                                                p: data.usu_contra
+                                                },
+                                            });
+    usuarioResult = (usuarioResult && usuarioResult[0]) ? usuarioResult[0] : [];
 
+    if(usuarioResult && usuarioResult.length >0){
+        const payload = {
+            usu_nombre: data.usu_nombre,
+            id : usuarioResult[0].id
+        }
+        console.log("payload", payload);
+        var token = jwt.sign(payload, '123456');
+        let usuarioResult = await sequelize.query(`UPDATE usuario 
+                                                SET usu_token = :t
+                                                WHERE usu_codigo = :i`, {
+                                                replacements: {
+                                                t: usu_token,
+                                                i: usuarioResult[0].id
+                                                },
+                                            });
+        return{ 
+            token
+        };
+    } else{
+        throw new Error("Datos de nombre de usuario o contrasenha invalidos");
+    }
+};
+const logout = async(data) => {
+    console.log("create data", data);
+    const usuarioModelResult = await usuarioModel.create(data);
+    if (usuarioModelResult) {
+        return usuarioModelResult.dataValues;
+    } else {
+        return null;
+    }
+};
 module.exports = {
     list,
     getById,
     create,
     update,
-    remove
+    remove,
+    login, 
+    logout
 };

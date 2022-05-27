@@ -1,5 +1,5 @@
-const { banhoModel } = require("../models/banho.model");
-const { sequelize } = require("../bd.service.js");
+const { banhoModel } = require("../models/banho-mascota.model");
+const { sequelize } = require("../services/bd.service.js");
 const { QueryTypes } = require("sequelize");
 
 const list = async(query, pageStart = 1, pageLimit = 10) => {

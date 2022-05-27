@@ -1,5 +1,5 @@
 const { gastoModel } = require("../models/gasto-mascota.model");
-const { sequelize } = require("./bd.service.js");
+const { sequelize } = require("../services/bd.service.js");
 const { QueryTypes } = require("sequelize");
 
 const list = async(query, pageStart = 1, pageLimit = 10) => {

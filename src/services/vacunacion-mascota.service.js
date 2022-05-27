@@ -1,5 +1,5 @@
-const { vacunacionModel } = require("../models/vacunacion.model");
-const { sequelize } = require("../bd.service.js");
+const { vacunacionModel } = require("../models/vacunacion-mascota.model");
+const { sequelize } = require("../services/bd.service.js");
 const { QueryTypes } = require("sequelize");
 
 const list = async(query, pageStart = 1, pageLimit = 10) => {

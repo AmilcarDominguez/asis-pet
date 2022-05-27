@@ -2,11 +2,19 @@ const { Module } = require('module');
 const usuarioService = require('../services/usuario.service');
 
 const list = async(req, res) => {
-    const usuario = await usuarioService.list(req.query.q);
-    res.send({
-        success: true,
-        usuario
-    });
+    try {
+        const usuario = await usuarioService.list(req.query.q);
+        res.status(200).send({
+            success: true,
+            usuario
+        });  
+    } catch (error) {
+        const usuario = await usuarioService.list(req.query.q);
+        res.status(200).send({
+            success: false,
+            error: error.message
+        }); 
+    }
 }
 const getById = async(req, res) => {
     const usuario = await usuarioService.getById(req.query.id);
@@ -39,11 +47,34 @@ const remove = async(req, res) => {
         success: booleanValue,
     });
 }
-
+const login = async(req, res) => {
+    try {
+        const usuario = await usuarioService.login(req.body);
+        res.status(202).send({
+            success: true,
+            token : usuario.usu_token
+        }); 
+    } catch (error) {
+        const usuario = await usuarioService.login(req.body);
+        res.status(202).send({
+            success: false,
+            error: error.message
+        });
+    } 
+}
+const logout = async(req, res) => {
+    const usuario = await usuarioService.logout(req.body);
+    res.status(202).send({
+        success: true,
+        usuario
+    });
+}
 module.exports = {
     list,
     getById,
     create,
     update,
-    remove
+    remove,
+    login,
+    logout
 };
