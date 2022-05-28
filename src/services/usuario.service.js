@@ -67,7 +67,7 @@ const remove = async(usu_codigo) => {
 };
 const login = async(data) => {
     console.log("login data", data);
-    let usuarioResult = await sequelize.query(`SELECT usu_codigo, usu_nombre FROM usuario 
+    let usuarioResult = await sequelize.query(`SELECT usu_codigo, usu_nombre, usu_token FROM usuario 
                                             WHERE usu_nombre = :n
                                             AND usu_contra = :p LIMIT 1`, {
                                                 replacements: {
@@ -78,35 +78,44 @@ const login = async(data) => {
     usuarioResult = (usuarioResult && usuarioResult[0]) ? usuarioResult[0] : [];
 
     if(usuarioResult && usuarioResult.length >0){
-        const payload = {
-            usu_nombre: data.usu_nombre,
-            id : usuarioResult[0].id
-        }
-        console.log("payload", payload);
-        var token = jwt.sign(payload, '123456');
-        let usuarioResult = await sequelize.query(`UPDATE usuario 
-                                                SET usu_token = :t
-                                                WHERE usu_codigo = :i`, {
-                                                replacements: {
-                                                t: usu_token,
-                                                i: usuarioResult[0].id
-                                                },
-                                            });
-        return{ 
-            token
-        };
+        if(usuarioResult[0].usu_token && usuarioResult[0].id != ''){
+            return{ 
+                usu_token : usuarioResult[0].usu_token
+            };
+        } else{
+            const payload = {
+                usu_nombre: data.usu_nombre,
+                id : usuarioResult[0].id
+            }
+            console.log("payload", payload);
+            var token = jwt.sign(payload, '123456');
+            let updateTokenUsuarioResult = await sequelize.query(`UPDATE usuario 
+                                                    SET usu_token = :t
+                                                    WHERE usu_codigo = :i`, {
+                                                    replacements: {
+                                                    t: usu_token,
+                                                    i: usuarioResult[0].id
+                                                    },
+                                                });
+            return{ 
+                token
+            };
+        } 
     } else{
         throw new Error("Datos de nombre de usuario o contrasenha invalidos");
     }
 };
 const logout = async(data) => {
-    console.log("create data", data);
-    const usuarioModelResult = await usuarioModel.create(data);
-    if (usuarioModelResult) {
-        return usuarioModelResult.dataValues;
-    } else {
-        return null;
-    }
+    console.log("logout data", data);
+    let updateTokenUsuarioResult = await sequelize.query(`UPDATE usuario 
+                                                    SET usu_token = :t
+                                                    WHERE usu_codigo = :i`, {
+                                                    replacements: {
+                                                    t: null,
+                                                    i: usuarioResult[0].id
+                                                    },
+                                                });
+    
 };
 module.exports = {
     list,
