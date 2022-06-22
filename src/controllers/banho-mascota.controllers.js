@@ -8,8 +8,15 @@ const list = async(req, res) => {
         banho
     });
 }
+const listFilter = async(req, res) => {
+    const banho = await banhoService.list(req.query.q);
+    res.send({
+        success: true,
+        banho
+    });
+}
 const getById = async(req, res) => {
-    const banho = await banhoService.getById(req.query.id);
+    const banho = await banhoService.getById(req.params.id);
     let jsonResultado = req.query;
     jsonResultado['success'] = true;
     jsonResultado['banho'] = banho;
@@ -42,6 +49,7 @@ const remove = async(req, res) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

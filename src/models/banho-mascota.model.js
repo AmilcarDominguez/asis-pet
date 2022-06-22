@@ -1,6 +1,6 @@
 const { timeStamp } = require("console");
-const { DataTypes } = require("sequelize");
-const { sequelize } = require("../services/bd.service.js");
+const { DataTypes } = require('sequelize');
+const { sequelize } = require("../services/bd.service");
 
 const banhoModel = sequelize.define(
     'banho', {
