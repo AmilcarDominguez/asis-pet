@@ -17,7 +17,7 @@ const list = async (req, res) => {
   }
 };
 const listFilter = async (req, res) => {
-  const mascota = await mascotaService.list(req.query.q);
+  const mascota = await mascotaService.listFilter(req.query.q);
   res.send({
     success: true,
     mascota,

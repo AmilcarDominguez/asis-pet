@@ -17,7 +17,7 @@ const list = async (req, res) => {
   }
 };
 const listFilter = async (req, res) => {
-  const gasto = await gastoService.list(req.query.q);
+  const gasto = await gastoService.listFilter(req.query.q);
   res.send({
     success: true,
     gasto,

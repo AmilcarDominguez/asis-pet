@@ -17,7 +17,7 @@ const list = async(req, res) => {
       }
 }
 const listFilter = async (req, res) => {
-    const vacunacion = await vacunacionService.list(req.query.q);
+    const vacunacion = await vacunacionService.listFilter(req.query.q);
     res.send({
       success: true,
       vacunacion,

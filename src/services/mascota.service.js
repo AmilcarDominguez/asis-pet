@@ -12,7 +12,28 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return mascotaArray;
 };
-
+const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
+    //const mascotaModelResult = await mascotaModel.findAll ();
+    let mascotaResult = await sequelize.query(
+      `SELECT * FROM mascota
+                                                        WHERE (UPPER(mas_nombre) LIKE :q
+                                                        OR UPPER(mas_tipo_codigo) LIKE :q
+                                                        OR UPPER(mas_sexo) LIKE :q
+                                                        OR UPPER(mas_raza) LIKE :q
+                                                        OR UPPER(mas_fecha_nacimiento) LIKE :q
+                                                        OR UPPER(mas_notas) LIKE :q)
+                                                        ORDER BY mas_codigo`,
+      {
+        replacements: {
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+        },
+        //type: QueryTypes.SELECT
+      }
+    );
+    mascotaResult = mascotaResult && mascotaResult[0] ? mascotaResult[0] : [];
+    console.log("mascotaResult", mascotaResult);
+    return mascotaResult;
+  };
 const getById = async(mas_codigo) => {
     const mascotaModelResult = await mascotaModel.findByPk(mas_codigo);
     console.log("find codigo", mas_codigo);
@@ -67,6 +88,7 @@ const remove = async(usu_codigo) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

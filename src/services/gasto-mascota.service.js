@@ -12,7 +12,26 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return gastoArray;
 };
-
+const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
+    //const gastoModelResult = await gastoModel.findAll ();
+    let gastoResult = await sequelize.query(
+      `SELECT * FROM gasto
+                                                        WHERE (UPPER(gas_descripcion) LIKE :q
+                                                        OR UPPER(gas_monto) LIKE :q
+                                                        OR UPPER(gas_fecha) LIKE :q)
+                                                        ORDER BY gas_codigo`,
+      {
+        replacements: {
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+        },
+        //type: QueryTypes.SELECT
+      }
+    );
+    gastoResult = gastoResult && gastoResult[0] ? gastoResult[0] : [];
+    console.log("gastoResult", gastoResult);
+  
+    return gastoResult;
+  };
 const getById = async(gas_codigo) => {
     const gastoModelResult = await gastoModel.findByPk(gas_codigo);
     console.log("find codigo", gas_codigo);
@@ -66,6 +85,7 @@ const remove = async(gas_codigo) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

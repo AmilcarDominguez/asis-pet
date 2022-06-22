@@ -16,7 +16,7 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   let banhoResult = await sequelize.query(
     `SELECT * FROM banho
                                                     WHERE (UPPER(ban_fecha) LIKE :q
-                                                    OR UPPER(ban_notas) LIKE :
+                                                    OR UPPER(ban_notas) LIKE :q)
                                                     ORDER BY ban_codigo`,
     {
       replacements: {

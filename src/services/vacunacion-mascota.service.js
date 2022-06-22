@@ -12,7 +12,26 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return vacunacionArray;
 };
-
+const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
+    //const vacunacionModelResult = await vacunacionModel.findAll ();
+    let vacunacionResult = await sequelize.query(
+      `SELECT * FROM vacunacion
+                                                      WHERE (UPPER(vac_denominacion) LIKE :q
+                                                      OR UPPER(vac_fecha) LIKE :q
+                                                      OR UPPER(vac_notas) LIKE :q)
+                                                      ORDER BY vac_codigo`,
+      {
+        replacements: {
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+        },
+        //type: QueryTypes.SELECT
+      }
+    );
+    vacunacionResult = vacunacionResult && vacunacionResult[0] ? vacunacionResult[0] : [];
+    console.log("vacunacionResult", vacunacionResult);
+  
+    return vacunacionResult;
+  };
 const getById = async(vac_codigo) => {
     const vacunacionModelResult = await vacunacionModel.findByPk(vac_codigo);
     console.log("find codigo", vac_codigo);
@@ -66,6 +85,7 @@ const remove = async(vac_codigo) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

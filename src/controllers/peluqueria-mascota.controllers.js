@@ -17,7 +17,7 @@ const list = async(req, res) => {
       }
 }
 const listFilter = async (req, res) => {
-    const peluqueria = await peluqueriaService.list(req.query.q);
+    const peluqueria = await peluqueriaService.listFilter(req.query.q);
     res.send({
       success: true,
       peluqueria,

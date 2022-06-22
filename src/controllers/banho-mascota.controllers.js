@@ -9,7 +9,7 @@ const list = async (req, res) => {
       banho,
     });
   } catch (error) {
-    const banho = await banhoService.list(req.query.q);
+    const banho = await banhoService.listFilter(req.query.q);
     res.status(200).send({
       success: false,
       error: error.message,

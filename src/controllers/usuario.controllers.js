@@ -17,7 +17,7 @@ const list = async(req, res) => {
     }
 }
 const listFilter = async (req, res) => {
-    const usuario = await usuarioService.list(req.query.q);
+    const usuario = await usuarioService.listFilter(req.query.q);
     res.send({
       success: true,
       usuario,
