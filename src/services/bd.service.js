@@ -3,7 +3,10 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('bd_asispet', 'postgres', 'admin1234', {
     host: 'localhost',
     port: 5433,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    /*define: {
+        timestamps: false
+    }*/
 });
 
 const testConection = async() => {

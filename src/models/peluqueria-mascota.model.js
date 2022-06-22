@@ -20,7 +20,7 @@ const peluqueriaModel = sequelize.define(
         }
     }, {
         tableName: 'peluqueria',
-        timestamp: false
+        timestamps: false
     }
 );
 

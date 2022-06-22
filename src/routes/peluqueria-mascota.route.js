@@ -3,7 +3,7 @@ const peluqueriaController = require('../controllers/peluqueria-mascota.controll
 module.exports = (app) => {
 
     app.get('/peluquerias', peluqueriaController.list);
-    app.get('/peluqueria-filter', peluqueriaControllers.listFilter);
+    app.get('/peluqueria-filter', peluqueriaController.listFilter);
     app.get('/peluqueria/find/:id', peluqueriaController.getById);
     app.post('/peluqueria/create', peluqueriaController.create);
     app.put('/peluqueria/update', peluqueriaController.update);

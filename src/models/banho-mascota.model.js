@@ -12,18 +12,18 @@ const banhoModel = sequelize.define(
         },
         ban_fecha: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         ban_notas: {
             type: DataTypes.STRING,
-            allowNull: false,
-        }
+            allowNull: true,
+        },
     }, {
         tableName: 'banho',
-        timestamp: false
+        timestamps: false
     }
 );
 
 module.exports = {
-    banhoModel,
+    banhoModel
 };

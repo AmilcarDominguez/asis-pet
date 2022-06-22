@@ -2,14 +2,29 @@ const { Module } = require('module');
 const peluqueriaService = require('../services/peluqueria-mascota.service');
 
 const list = async(req, res) => {
+    try {
+        const peluqueria = await peluqueriaService.list(req.query.q);
+        res.status(200).send({
+          success: true,
+          peluqueria,
+        });
+      } catch (error) {
+        const peluqueria = await peluqueriaService.list(req.query.q);
+        res.status(200).send({
+          success: false,
+          error: error.message,
+        });
+      }
+}
+const listFilter = async (req, res) => {
     const peluqueria = await peluqueriaService.list(req.query.q);
     res.send({
-        success: true,
-        peluqueria
+      success: true,
+      peluqueria,
     });
 }
 const getById = async(req, res) => {
-    const peluqueria = await peluqueriaService.getById(req.query.id);
+    const peluqueria = await peluqueriaService.getById(req.params.id);
     let jsonResultado = req.query;
     jsonResultado['success'] = true;
     jsonResultado['peluqueria'] = peluqueria;
@@ -42,6 +57,7 @@ const remove = async(req, res) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

@@ -24,7 +24,7 @@ const gastoModel = sequelize.define(
         },
     }, {
         tableName: 'gasto',
-        timestamp: false
+        timestamps: false
     }
 );
 

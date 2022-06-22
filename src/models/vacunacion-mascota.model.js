@@ -24,7 +24,7 @@ const vacunacionModel = sequelize.define(
         }
     }, {
         tableName: 'vacunacion',
-        timestamp: false
+        timestamps: false
     }
 );
 

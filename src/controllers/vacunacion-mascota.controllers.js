@@ -2,14 +2,29 @@ const { Module } = require('module');
 const vacunacionService = require('../services/vacunacion-mascota.service');
 
 const list = async(req, res) => {
+    try {
+        const vacunacion = await vacunacionService.list(req.query.q);
+        res.status(200).send({
+          success: true,
+          vacunacion,
+        });
+      } catch (error) {
+        const vacunacion = await vacunacionService.list(req.query.q);
+        res.status(200).send({
+          success: false,
+          error: error.message,
+        });
+      }
+}
+const listFilter = async (req, res) => {
     const vacunacion = await vacunacionService.list(req.query.q);
     res.send({
-        success: true,
-        vacunacion
+      success: true,
+      vacunacion,
     });
 }
 const getById = async(req, res) => {
-    const vacunacion = await vacunacionService.getById(req.query.id);
+    const vacunacion = await vacunacionService.getById(req.params.id);
     let jsonResultado = req.query;
     jsonResultado['success'] = true;
     jsonResultado['vacunacion'] = vacunacion;
@@ -42,6 +57,7 @@ const remove = async(req, res) => {
 
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,

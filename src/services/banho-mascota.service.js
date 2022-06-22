@@ -1,17 +1,16 @@
-const { banhoModel } = require("../models/banho-mascota.model");
+const { banhoModel } = require ('../models/banho-mascota.model');
 const { sequelize } = require("../services/bd.service");
 const { QueryTypes } = require("sequelize");
 
 const list = async (query, pageStart = 1, pageLimit = 10) => {
   const banhoModelResult = await banhoModel.findAll();
-
   const banhoArray = new Array();
   for (let i = 0; i < banhoModelResult.length; i++) {
     const banhoResult = banhoModelResult[i];
     banhoArray.push(banhoResult.dataValues);
   }
   return banhoArray;
-};
+}
 const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   //const banhoModelResult = await banhoModel.findAll ();
   let banhoResult = await sequelize.query(

@@ -3,7 +3,7 @@ const usuarioController = require('../controllers/usuario.controllers');
 module.exports = (app) => {
 
     app.get('/usuarios', usuarioController.list);
-    app.get('/usuario-filter', usuarioControllers.listFilter);
+    app.get('/usuario-filter', usuarioController.listFilter);
     app.get('/usuario/find/:id', usuarioController.getById);
     app.post('/usuario/create', usuarioController.create);
     app.put('/usuario/update', usuarioController.update);

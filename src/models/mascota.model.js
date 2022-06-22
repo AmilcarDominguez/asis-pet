@@ -35,7 +35,7 @@ const mascotaModel = sequelize.define(
         }
     }, {
         tableName: 'mascota',
-        timestamp: false
+        timestamps: false
     }
 );
 module.exports = {

@@ -16,8 +16,15 @@ const list = async(req, res) => {
         }); 
     }
 }
+const listFilter = async (req, res) => {
+    const usuario = await usuarioService.list(req.query.q);
+    res.send({
+      success: true,
+      usuario,
+    });
+}
 const getById = async(req, res) => {
-    const usuario = await usuarioService.getById(req.query.id);
+    const usuario = await usuarioService.getById(req.params.id);
     let jsonResultado = req.query;
     jsonResultado['success'] = true;
     jsonResultado['usuario'] = usuario;
@@ -71,6 +78,7 @@ const logout = async(req, res) => {
 }
 module.exports = {
     list,
+    listFilter,
     getById,
     create,
     update,
