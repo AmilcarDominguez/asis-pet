@@ -12,12 +12,12 @@ const list = async (query, pageStart = 1, pageLimit = 10) => {
   return banhoArray;
 }
 const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
-  //const banhoModelResult = await banhoModel.findAll ();
+  //const usuarioModelResult = await usuarioModel.findAll ();
   let banhoResult = await sequelize.query(
     `SELECT * FROM banho
-                                                    WHERE (UPPER(ban_fecha) LIKE :q
-                                                    OR UPPER(ban_notas) LIKE :q)
-                                                    ORDER BY ban_codigo`,
+                                                      WHERE (UPPER(ban_fecha) LIKE :q
+                                                      OR UPPER(ban_notas) LIKE :q)
+                                                      ORDER BY ban_codigo`,
     {
       replacements: {
         q: query ? "%" + query.toUpperCase() + "%" : "%",
@@ -27,7 +27,6 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   );
   banhoResult = banhoResult && banhoResult[0] ? banhoResult[0] : [];
   console.log("banhoResult", banhoResult);
-
   return banhoResult;
 };
 

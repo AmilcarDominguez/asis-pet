@@ -13,7 +13,7 @@ const mascotaModel = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        mas_tipo_codigo: {
+        mas_tipo: {
             type: DataTypes.STRING,
             allowNull: false,
         },

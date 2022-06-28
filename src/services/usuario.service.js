@@ -2,7 +2,6 @@ const { usuarioModel } = require("../models/usuario.model");
 const { sequelize } = require("../services/bd.service.js");
 const { QueryTypes } = require("sequelize");
 const jwt = require("jsonwebtoken");
-const { query } = require("express");
 
 const list = async (query, pageStart = 1, pageLimit = 10) => {
   const usuarioModelResult = await usuarioModel.findAll();
@@ -13,13 +12,12 @@ const list = async (query, pageStart = 1, pageLimit = 10) => {
     usuarioArray.push(usuarioResult.dataValues);
   }
   return usuarioArray;
-}
+};
 const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   //const usuarioModelResult = await usuarioModel.findAll ();
   let usuarioResult = await sequelize.query(
     `SELECT * FROM usuario
                                                       WHERE (UPPER(usu_nombre) LIKE :q
-                                                      OR UPPER(usu_correo) LIKE :q
                                                       OR UPPER(usu_correo) LIKE :q)
                                                       ORDER BY usu_codigo`,
     {
@@ -31,7 +29,6 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   );
   usuarioResult = usuarioResult && usuarioResult[0] ? usuarioResult[0] : [];
   console.log("usuarioResult", usuarioResult);
-
   return usuarioResult;
 };
 const getById = async (usu_codigo) => {
@@ -86,8 +83,9 @@ const remove = async (usu_codigo) => {
 };
 const login = async (data) => {
   console.log("login data", data);
+  //buscar usuario por nombre y contraseña
   let usuarioResult = await sequelize.query(
-    `SELECT usu_codigo, usu_nombre, usu_token FROM usuario 
+                                            `SELECT usu_codigo, usu_nombre, usu_token FROM usuario 
                                             WHERE usu_nombre = :n
                                             AND usu_contra = :p LIMIT 1`,
     {
@@ -95,54 +93,57 @@ const login = async (data) => {
         n: data.usu_nombre,
         p: data.usu_contra,
       },
+      //type: QueryTypes.SELECT,
     }
   );
   usuarioResult = usuarioResult && usuarioResult[0] ? usuarioResult[0] : [];
-
+  console.log("usuarioResult", usuarioResult);
   if (usuarioResult && usuarioResult.length > 0) {
-    if (usuarioResult[0].usu_token && usuarioResult[0].id != "") {
+    if (usuarioResult[0].usu_token && usuarioResult[0].usu_codigo != '') {
       return {
-        usu_token: usuarioResult[0].usu_token,
+        usu_token: usuarioResult[0].usu_token
       };
     } else {
       const payload = {
         usu_nombre: data.usu_nombre,
-        id: usuarioResult[0].id,
+        usu_codigo: usuarioResult[0].usu_codigo
       };
       console.log("payload", payload);
       var token = jwt.sign(payload, "123456");
+
       let updateTokenUsuarioResult = await sequelize.query(
-        `UPDATE usuario 
+                                                   `UPDATE usuario 
                                                     SET usu_token = :t
                                                     WHERE usu_codigo = :i`,
         {
           replacements: {
-            t: usu_token,
-            i: usuarioResult[0].id,
+            t: token,
+            i: usuarioResult[0].usu_codigo,
           },
+          //type: QueryTypes.UPDATE,
         }
       );
       return {
-        token,
+        usu_token: token,
       };
     }
   } else {
     throw new Error("Datos de nombre de usuario o contrasenha invalidos");
   }
 };
-const logout = async (data) => {
-  console.log("logout data", data);
+const logout = async (usuarioId) => {
   let updateTokenUsuarioResult = await sequelize.query(
     `UPDATE usuario 
-                                                    SET usu_token = :t
+                                                    SET usu_token = null
                                                     WHERE usu_codigo = :i`,
     {
       replacements: {
-        t: null,
-        i: usuarioResult[0].id,
+        i: usuarioId
       },
+      //type: QueryTypes.UPDATE,
     }
   );
+  return;
 };
 module.exports = {
   list,

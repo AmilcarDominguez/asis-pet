@@ -62,17 +62,16 @@ const update = async(data) => {
         },
     });
 
-
     if (mascotaModelCount > 0) {
-        const mascotaModelResult = await mascotaModel.findByPk(codigo);
+        const mascotaModelResult = await mascotaModel.findByPk(data.mas_codigo);
         return mascotaModelResult.dataValues;
     } else {
         return null;
     }
-};
+}
 
-const remove = async(usu_codigo) => {
-    console.log("borrar codigo ", usu_codigo);
+const remove = async(mas_codigo) => {
+    console.log("borrar codigo ", mas_codigo);
     const mascotaModelCount = await mascotaModel.destroy({
         where: {
             mas_codigo: mas_codigo

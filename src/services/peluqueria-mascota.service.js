@@ -32,8 +32,8 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
     return peluqueriaResult;
   };
 const getById = async(pel_codigo) => {
-    const peluqueriaModelResult = await peluqueriaModel.findByPk(vac_codigo);
-    console.log("find codigo", vac_codigo);
+    const peluqueriaModelResult = await peluqueriaModel.findByPk(pel_codigo);
+    console.log("find codigo", pel_codigo);
     if (peluqueriaModelResult) {
         return peluqueriaModelResult.dataValues;
     } else {

@@ -9,7 +9,7 @@ const list = async (req, res) => {
       banho,
     });
   } catch (error) {
-    const banho = await banhoService.listFilter(req.query.q);
+    const banho = await banhoService.list(req.query.q);
     res.status(200).send({
       success: false,
       error: error.message,
@@ -18,12 +18,17 @@ const list = async (req, res) => {
 };
 
 const listFilter = async (req, res) => {
-  const banho = await banhoService.list(req.query.q);
+  try {
+    const banho = await banhoService.listFilter(req.query.q);
   res.send({
     success: true,
     banho,
   });
-};
+  } catch (error) {
+    console.log("paso aqui", error);
+  }
+  
+}
 const getById = async (req, res) => {
   try {
     const banho = await banhoService.getById(req.params.id);
