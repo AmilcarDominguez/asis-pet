@@ -6,10 +6,26 @@
         </ion-buttons>
         <div class="content_div">
             <h1>LISTADO DE IDAS A PELUQUERIA</h1>
+            <ion-list *ngFor="let peluquerias of peluqueria">
+                <ion-item color="primary" [routerLink]="'/guardar-peluqueria/'+peluquerias.pel_codigo+'/'+peluquerias.pel_mas_codigo">
+                    <ion-avatar>
+                        <img src="/assets/icon/mascota.png" />
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>{{this.peluquerias.pel_fecha}}</h2>
+                        <h3>{{this.peluquerias.pel_notas}}</h3>
+                    </ion-label>
+                </ion-item>
+                <ion-fab horizontal="end" vertical="center" slot="fixed">
+                    <ion-fab-button color="danger" (click)="borrarpeluqueria(peluquerias.pel_codigo)">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-fab>
+            </ion-list>
         </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="secondary" routerLink="/guardar-peluqueria">
+        <ion-fab-button color="secondary" (click)="guardarpeluqueria()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>

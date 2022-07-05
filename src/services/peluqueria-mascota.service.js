@@ -12,24 +12,23 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return peluqueriaArray;
 };
-const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
-    //const peluqueriaModelResult = await peluqueriaModel.findAll ();
-    let peluqueriaResult = await sequelize.query(
-      `SELECT * FROM peluqueria
-                                                      WHERE (UPPER(pel_fecha) LIKE :q
-                                                      OR UPPER(pel_notas) LIKE :q)
-                                                      ORDER BY pel_codigo`,
-      {
+const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
+
+    let peluqueriaResult = await sequelize.query(`SELECT * FROM peluqueria WHERE ( pel_mas_codigo = :q)
+                                           ORDER BY pel_codigo`, {
         replacements: {
-          q: query ? "%" + query.toUpperCase() + "%" : "%",
+            q: (query ? '' + query + '' : '')
         },
-        //type: QueryTypes.SELECT
-      }
-    );
-    peluqueriaResult = peluqueriaResult && peluqueriaResult[0] ? peluqueriaResult[0] : [];
+        //type:QueryTypes.SELECT
+    });
+  
+  
+    peluqueriaResult = (peluqueriaResult && peluqueriaResult[0]) ? peluqueriaResult[0] : [];
+  
     console.log("peluqueriaResult", peluqueriaResult);
   
     return peluqueriaResult;
+  
   };
 const getById = async(pel_codigo) => {
     const peluqueriaModelResult = await peluqueriaModel.findByPk(pel_codigo);

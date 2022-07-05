@@ -113,7 +113,7 @@
                 <ion-fab horizontal="start" vertical="top" slot="fixed">
                   <ion-fab-button
                     color="medium"
-                    routerLink="/listar-peluqueria"
+                    [routerLink]="'/listar-peluqueria/'+ this.registromascota.value['mas_codigo']"
                   >
                     <ion-icon name="cut-outline"></ion-icon>
                   </ion-fab-button>

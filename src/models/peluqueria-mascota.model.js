@@ -17,6 +17,10 @@ const peluqueriaModel = sequelize.define(
         pel_notas: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        pel_mas_codigo: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     }, {
         tableName: 'peluqueria',

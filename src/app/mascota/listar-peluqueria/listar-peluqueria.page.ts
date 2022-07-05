@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IonList, ToastController } from '@ionic/angular';
+import { MascotapeluqueriaService } from 'src/app/services/mascotapeluqueria.service';
 
 @Component({
   selector: 'app-listar-peluqueria',
@@ -6,10 +9,65 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listar-peluqueria.page.scss'],
 })
 export class ListarPeluqueriaPage implements OnInit {
+  @ViewChild(IonList) ionList: IonList;
+  peluqueria = [];
+  private codigo;
+  
+  constructor(private mascotapeluqueriaService : MascotapeluqueriaService,   private toastCtrl: ToastController ,
+    private activateRoute: ActivatedRoute, public router: Router
+    ) { }
+  ngOnInit(){
+   this.listarPeluquerias();
+  }
 
-  constructor() { }
+  buscar(event) {
+    const valor = event.detail.value;
+    this.mascotapeluqueriaService.Filter(valor).subscribe((data) => {
+      console.log(data);
+      if (data) {
+        this.peluqueria = data['peluquerias'];
+      } else {
+        this.peluqueria = [];
+      }
+    });
+  }
+  ionViewWillEnter() {
+    this.listarPeluquerias();
+  }
+  listarPeluquerias(){
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("Esto es this.codigo", this.codigo);
+    this.mascotapeluqueriaService.Filter(this.codigo).subscribe(data=>{
+      console.log("esto es data",data);
+      if(data){
+        this.peluqueria = data['peluqueria'];
+      }else{
+        this.peluqueria= [];
+      }
+    });
+    console.log("esto es peluqueria",this.peluqueria);
+  }
+  guardarpeluqueria(){
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("Esto es this.codigo", this.codigo);
+    this.router.navigate(['/guardar-peluqueria/0/'+this.codigo]);
+  }
+  borrarpeluqueria(codigo) {
+    this.mascotapeluqueriaService.delete(codigo).subscribe(async (data) => {
+      const message = data['success']
+        ? 'Peluqueria #' + codigo + ' borrado con exito'
+        : ' Error al eliminar, el registro esta siendo utilizado';
+      const toast = await this.toastCtrl.create({
+        message: 'Peluqueria #' + codigo + ' borrado con exito',
+        duration: 2000,
+      });
+      this.listarPeluquerias();
 
-  ngOnInit() {
+      toast.present();
+
+     // this.ionList.closeSlidingItems();
+   
+    });
   }
 
 }
