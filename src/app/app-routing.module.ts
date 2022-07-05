@@ -39,7 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./usuarios/cambiar-contra/cambiar-contra.module').then( m => m.CambiarContraPageModule)
   },
   {
-    path: 'guardar-mascota',
+    path: 'guardar-mascota/:id',
     loadChildren: () => import('./mascota/guardar-mascota/guardar-mascota.module').then( m => m.GuardarMascotaPageModule)
   },
   {

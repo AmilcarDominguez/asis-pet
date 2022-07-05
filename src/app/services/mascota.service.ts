@@ -1,41 +1,37 @@
-import { Mascota } from "src/app/interfaces/mascotas";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
-    providedIn: 'root',
-  })
-  export class MascotaService {
-    api = 'http://localhost:3000/mascota';
-    constructor(public http: HttpClient) {}
-  
-    listarMascota() {
-      return this.http.get(this.api + 's');
-    }
-  
-    crearMascota(user: any) {
-      return this.http.post(this.api + '/create', user);
-    }
-  
-    buscarMascota(texto: String) {
-      return this.http.get(this.api + `s-filter/${texto}`);
-    }
-  
-    obtenerMascota(id: number){
-      const path = `${this.api}/find/${id}`;
-      return this.http.get(path);
-    }
-    actualizarMascota(Mascotas_codigo, Mascota: Mascota) {
-      return this.http.put(
-        'http://localhost:3000/mascota/update/' + Mascotas_codigo,
-        Mascota
-      );
-    }  
-    eliminarMascotaService(id: Observable<Mascota[]>) {
-      return this.http.delete<Mascota[]>(
-        'http://localhost:3000/mascota/remove/' + id
-      );
+  providedIn: 'root',
+})
+export class MascotaService {
+  private x = 'http://localhost:3000/mascota';
+
+  constructor(private http: HttpClient) {}
+
+  listMascotas(): Observable<any> {
+    return this.http.get(this.x + `s`);
+  }
+
+  public getById(codigo: string): Observable<any> {
+    return this.http.get(this.x + `/find/` + codigo);
+  }
+
+  public create(mascota: any) {
+    if (mascota.col_codigo) {
+      //Actualiza los datos
+      return this.http.put(this.x + `/update`, mascota);
+    } else {
+      // Crea Registro nuevo
+      return this.http.post(this.x + `/create`, mascota);
     }
   }
+
+  public delete(codigo: String) {
+    return this.http.delete(this.x + `/remove/${codigo}`);
+  }
+  public Filter(texto: String) {
+    return this.http.get(`http://localhost:3000/mascota-filter?q=${texto}`);
+  }
+}
