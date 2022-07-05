@@ -22,6 +22,10 @@ const gastoModel = sequelize.define(
             type: DataTypes.DATE,
             allowNull: false,
         },
+        gas_mas_codigo: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     }, {
         tableName: 'gasto',
         timestamps: false

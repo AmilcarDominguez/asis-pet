@@ -2,8 +2,8 @@ const { timeStamp } = require("console");
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../services/bd.service.js");
 
-const vacunacionModel = sequelize.define(
-    'vacunacion', {
+const vacunaModel = sequelize.define(
+    'vacuna', {
         vac_codigo: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -21,13 +21,17 @@ const vacunacionModel = sequelize.define(
         vac_notas: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        vac_mas_codigo: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     }, {
-        tableName: 'vacunacion',
+        tableName: 'vacuna',
         timestamps: false
     }
 );
 
 module.exports = {
-    vacunacionModel,
+    vacunaModel,
 };

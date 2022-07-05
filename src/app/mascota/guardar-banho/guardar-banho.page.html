@@ -5,6 +5,7 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <form [formGroup]="registrobanho" (ngSubmit)="guardarBanho()">
             <h1>REGISTRO DE BAÑO</h1>
             <ion-grid>
                 <ion-row>
@@ -12,7 +13,8 @@
                         <div class="col_div">
                             <ion-list>
                                 <ion-item>
-                                    <ion-input [value]="dateValue2" placeholder="FECHA DE BAÑO" readonly></ion-input>
+                                    <ion-input [value]="dateValue2" placeholder="FECHA DE BAÑO" readonly formControlName="ban_fecha"
+                                    name="ban_fecha"></ion-input>
                                     <ion-button fill="clear" id="open-date-input-2">
                                         <ion-icon icon="calendar"></ion-icon>
                                     </ion-button>
@@ -24,7 +26,8 @@
                                     </ion-popover>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-textarea type="text" value="" placeholder="NOTAS"></ion-textarea>
+                                    <ion-textarea type="text" value="" placeholder="NOTAS" formControlName="ban_notas"
+                                    name="ban_notas"></ion-textarea>
                                 </ion-item>
                             </ion-list>
                         </div>
@@ -32,8 +35,9 @@
                 </ion-row>
             </ion-grid>
             <div class="accion-boton">
-                <ion-button class="guardar-boton" routerLink="/listar-banho">GUARDAR</ion-button>
+                <ion-button type="submit" class="guardar-boton" [disabled]="!registrobanho.valid">GUARDAR</ion-button>
             </div>
+        </form>
         </div>
     </div>
 </ion-content>

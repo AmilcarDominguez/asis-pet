@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule,
     GuardarMascotaPageRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [GuardarMascotaPage]
 })

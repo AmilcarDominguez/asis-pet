@@ -9,11 +9,8 @@ import { MascotaService } from 'src/app/services/mascota.service';
 })
 export class ListarMascotaPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
-
   mascota = [];
- 
   constructor(private mascotaService : MascotaService,   private toastCtrl: ToastController) { }
-  
   ngOnInit(){
    this.listarMascotas();
   }

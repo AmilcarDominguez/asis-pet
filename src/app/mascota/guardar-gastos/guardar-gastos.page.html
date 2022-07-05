@@ -5,6 +5,7 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <form [formGroup]="registrogasto" (ngSubmit)="guardarGasto()">
             <h1>REGISTRO DE GASTO</h1>
             <ion-grid>
                 <ion-row>
@@ -12,10 +13,12 @@
                         <div class="col_div">
                             <ion-list>
                                 <ion-item>
-                                    <ion-textarea type="text" value="" placeholder="DESCRIPCION"></ion-textarea>
+                                    <ion-textarea type="text" value="" placeholder="DESCRIPCION" formControlName="gas_descripcion"
+                                    name="gas_descripcion"></ion-textarea>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-input [value]="dateValue2" placeholder="FECHA DEL GASTO" readonly></ion-input>
+                                    <ion-input [value]="dateValue2" placeholder="FECHA DEL GASTO" readonly formControlName="gas_fecha"
+                                    name="gas_fecha"></ion-input>
                                     <ion-button fill="clear" id="open-date-input-2">
                                         <ion-icon icon="calendar"></ion-icon>
                                     </ion-button>
@@ -27,7 +30,8 @@
                                     </ion-popover>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-input type="number" value="" placeholder="MONTO"></ion-input>
+                                    <ion-input type="number" value="" placeholder="MONTO" formControlName="gas_monto"
+                                    name="gas_monto"></ion-input>
                                 </ion-item>
                             </ion-list>
                         </div>
@@ -35,8 +39,9 @@
                 </ion-row>
             </ion-grid>
             <div class="accion-boton">
-                <ion-button class="guardar-boton" routerLink="/listar-gastos">GUARDAR</ion-button>
+                <ion-button type="submit" class="guardar-boton" [disabled]="!registrogasto.valid">GUARDAR</ion-button>
             </div>
+        </form>
         </div>
     </div>
 </ion-content>

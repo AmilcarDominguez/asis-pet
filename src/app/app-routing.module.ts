@@ -43,39 +43,39 @@ const routes: Routes = [
     loadChildren: () => import('./mascota/guardar-mascota/guardar-mascota.module').then( m => m.GuardarMascotaPageModule)
   },
   {
-    path: 'editar-mascota',
+    path: 'editar-mascota/:id',
     loadChildren: () => import('./mascota/editar-mascota/editar-mascota.module').then( m => m.EditarMascotaPageModule)
   },
   {
-    path: 'listar-gastos',
+    path: 'listar-gastos/:id',
     loadChildren: () => import('./mascota/listar-gastos/listar-gastos.module').then( m => m.ListarGastosPageModule)
   },
   {
-    path: 'guardar-gastos',
+    path: 'guardar-gastos/:id/:co',
     loadChildren: () => import('./mascota/guardar-gastos/guardar-gastos.module').then( m => m.GuardarGastosPageModule)
   },
   {
-    path: 'listar-vacunas',
+    path: 'listar-vacunas/:id',
     loadChildren: () => import('./mascota/listar-vacunas/listar-vacunas.module').then( m => m.ListarVacunasPageModule)
   },
   {
-    path: 'guardar-vacunas',
+    path: 'guardar-vacunas/:id/:co',
     loadChildren: () => import('./mascota/guardar-vacunas/guardar-vacunas.module').then( m => m.GuardarVacunasPageModule)
   },
   {
-    path: 'listar-banho',
+    path: 'listar-banho/:id',
     loadChildren: () => import('./mascota/listar-banho/listar-banho.module').then( m => m.ListarBanhoPageModule)
   },
   {
-    path: 'guardar-banho',
+    path: 'guardar-banho/:id/:co',
     loadChildren: () => import('./mascota/guardar-banho/guardar-banho.module').then( m => m.GuardarBanhoPageModule)
   },
   {
-    path: 'listar-peluqueria',
+    path: 'listar-peluqueria/:id',
     loadChildren: () => import('./mascota/listar-peluqueria/listar-peluqueria.module').then( m => m.ListarPeluqueriaPageModule)
   },
   {
-    path: 'guardar-peluqueria',
+    path: 'guardar-peluqueria/:id/:co',
     loadChildren: () => import('./mascota/guardar-peluqueria/guardar-peluqueria.module').then( m => m.GuardarPeluqueriaPageModule)
   }
 

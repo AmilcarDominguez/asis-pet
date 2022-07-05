@@ -11,7 +11,8 @@ const list = async (query, pageStart = 1, pageLimit = 10) => {
   }
   return banhoArray;
 }
-const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
+//Este otro 
+/*const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   //const usuarioModelResult = await usuarioModel.findAll ();
   let banhoResult = await sequelize.query(
     `SELECT * FROM banho
@@ -28,8 +29,25 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
   banhoResult = banhoResult && banhoResult[0] ? banhoResult[0] : [];
   console.log("banhoResult", banhoResult);
   return banhoResult;
-};
+};*/
+const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
 
+  let banhoResult = await sequelize.query(`SELECT * FROM banho WHERE ( ban_mas_codigo = :q)
+                                         ORDER BY ban_codigo`, {
+      replacements: {
+          q: (query ? '' + query + '' : '')
+      },
+      //type:QueryTypes.SELECT
+  });
+
+
+  banhoResult = (banhoResult && banhoResult[0]) ? banhoResult[0] : [];
+
+  console.log("banhoResult", banhoResult);
+
+  return banhoResult;
+
+};
 const getById = async (ban_codigo) => {
   const banhoModelResult = await banhoModel.findByPk(ban_codigo);
   console.log("find codigo", ban_codigo);

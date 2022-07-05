@@ -5,7 +5,7 @@
       <ion-label>ATRAS</ion-label>
     </ion-buttons>
     <div class="content_div">
-      <form [formGroup]="actualizarMascotaForm" (ngSubmit)="actualizarForm()">
+      <form [formGroup]="registromascota" (ngSubmit)="guardarMascota()">
         <h1>EDITAR MASCOTA</h1>
         <p>INFORMACION BASICA</p>
         <ion-grid>
@@ -27,25 +27,54 @@
                         ></ion-input>
                       </ion-item>
                       <ion-item>
-                        <ion-select formControlName="mas_tipo" value="{{this.mas_tipo}}" interface="popover" placeholder="Tipo">
-                            <ion-select-option value="{{this.mas_tipo}}">PERRO</ion-select-option>
-                            <ion-select-option value="{{this.mas_tipo}}">GATO</ion-select-option>
-                            <ion-select-option value="{{this.mas_tipo}}">CONEJO</ion-select-option>
-                            <ion-select-option value="{{this.mas_tipo}}">LORO</ion-select-option>
+                        <ion-select
+                          formControlName="mas_tipo"
+                          name="mas_tipo"
+                          interface="popover"
+                          placeholder="Tipo"
+                        >
+                          <ion-select-option value="PERRO"
+                            >PERRO</ion-select-option
+                          >
+                          <ion-select-option value="GATO"
+                            >GATO</ion-select-option
+                          >
+                          <ion-select-option value="CONEJO"
+                            >CONEJO</ion-select-option
+                          >
+                          <ion-select-option value="LORO"
+                            >LORO</ion-select-option
+                          >
                         </ion-select>
-                    </ion-item>
-                    <ion-item>
-                        <ion-select formControlName="mas_sexo" value="{{this.mas_sexo}}" interface="popover" placeholder="Sexo">
-                            <ion-select-option value="{{this.mas_tipo}}">MACHO</ion-select-option>
-                            <ion-select-option value="{{this.mas_tipo}}">HEMBRA</ion-select-option>
+                      </ion-item>
+                      <ion-item>
+                        <ion-select
+                          formControlName="mas_sexo"
+                          name="mas_sexo"
+                          interface="popover"
+                          placeholder="Sexo"
+                        >
+                          <ion-select-option value="MACHO"
+                            >MACHO</ion-select-option
+                          >
+                          <ion-select-option value="HEMBRA"
+                            >HEMBRA</ion-select-option
+                          >
                         </ion-select>
-                    </ion-item>
+                      </ion-item>
                       <ion-fab horizontal="end" vertical="bottom" slot="fixed">
                         <ion-fab-button
                           color="primary"
-                          routerLink="/guardar-mascota"
+                          [routerLink]="'/guardar-mascota/'+ this.registromascota.value['mas_codigo']"
+                          [disabled]="!registromascota.valid"
                         >
                           <ion-icon name="information-outline"></ion-icon>
+                        </ion-fab-button>
+                        <ion-fab-button
+                          color="primary"
+                          (click)="guardarMascota()"
+                        >
+                          <ion-icon name="checkmark-outline"></ion-icon>
                         </ion-fab-button>
                       </ion-fab>
                     </ion-list>
@@ -58,7 +87,7 @@
             <ion-col size="7">
               <div class="col_botones">
                 <ion-fab horizontal="start" vertical="top" slot="fixed">
-                  <ion-fab-button color="success" routerLink="/listar-gastos">
+                  <ion-fab-button color="success" [routerLink]="'/listar-gastos/'+ this.registromascota.value['mas_codigo']">
                     <ion-icon name="cash-outline"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
@@ -70,7 +99,7 @@
             <ion-col size="8">
               <div class="col_botones">
                 <ion-fab horizontal="start" vertical="top" slot="fixed">
-                  <ion-fab-button color="danger" routerLink="/listar-vacunas">
+                  <ion-fab-button color="danger" [routerLink]="'/listar-vacunas/'+ this.registromascota.value['mas_codigo']">
                     <ion-icon name="medkit-outline"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
@@ -97,7 +126,7 @@
             <ion-col size="7">
               <div class="col_botones">
                 <ion-fab horizontal="start" vertical="top" slot="fixed">
-                  <ion-fab-button color="secondary" routerLink="/listar-banho">
+                  <ion-fab-button color="secondary" [routerLink]="'/listar-banho/'+ this.registromascota.value['mas_codigo']">
                     <ion-icon name="water-outline"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>

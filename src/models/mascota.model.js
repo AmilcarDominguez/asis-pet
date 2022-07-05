@@ -7,13 +7,9 @@ const mascotaModel = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
         },
         mas_nombre: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        mas_tipo: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -32,7 +28,11 @@ const mascotaModel = sequelize.define(
         mas_notas: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+        mas_tipo: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     }, {
         tableName: 'mascota',
         timestamps: false

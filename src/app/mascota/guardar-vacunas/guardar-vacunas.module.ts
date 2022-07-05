@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { GuardarVacunasPageRoutingModule } from './guardar-vacunas-routing.module';
 
 import { GuardarVacunasPage } from './guardar-vacunas.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GuardarVacunasPageRoutingModule
+    GuardarVacunasPageRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   declarations: [GuardarVacunasPage]
 })

@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class MascotaService {
-  private x = 'http://localhost:3000/mascota';
+export class MascotabanhoService {
+  private x = 'http://localhost:3000/banho';
 
   constructor(private http: HttpClient) {}
 
-  listMascotas(): Observable<any> {
+  listBanhos(): Observable<any> {
     return this.http.get(this.x + `s`);
   }
 
@@ -18,13 +18,13 @@ export class MascotaService {
     return this.http.get(this.x + `/find/` + codigo);
   }
 
-  public create(mascota: any) {
-    if (mascota.mas_codigo) {
+  public create(banho: any) {
+    if (banho.ban_codigo) {
       //Actualiza los datos
-      return this.http.put(this.x + `/update`, mascota);
+      return this.http.put(this.x + `/update`, banho);
     } else {
       // Crea Registro nuevo
-      return this.http.post(this.x + `/create`, mascota);
+      return this.http.post(this.x + `/create`, banho);
     }
   }
 
@@ -32,6 +32,6 @@ export class MascotaService {
     return this.http.delete(this.x + `/remove/${codigo}`);
   }
   public Filter(texto: String) {
-    return this.http.get(`http://localhost:3000/mascota-filter?q=${texto}`);
+    return this.http.get(`http://localhost:3000/banho-filter?q=${texto}`);
   }
 }

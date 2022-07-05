@@ -6,10 +6,26 @@
         </ion-buttons>
         <div class="content_div">
             <h1>LISTADO DE BAÑOS</h1>
+            <ion-list *ngFor="let banhos of banho">
+                <ion-item color="primary" [routerLink]="'/guardar-banho/'+banhos.ban_codigo+'/'+banhos.ban_mas_codigo">
+                    <ion-avatar>
+                        <img src="/assets/icon/mascota.png" />
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>{{this.banhos.ban_fecha}}</h2>
+                        <h3>{{this.banhos.ban_notas}}</h3>
+                    </ion-label>
+                </ion-item>
+                <ion-fab horizontal="end" vertical="center" slot="fixed">
+                    <ion-fab-button color="danger" (click)="borrarbanho(banhos.ban_codigo)">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-fab-button>
+                </ion-fab>
+            </ion-list>
         </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="secondary" routerLink="/guardar-banho">
+        <ion-fab-button color="secondary" (click)="guardarbanho()">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>

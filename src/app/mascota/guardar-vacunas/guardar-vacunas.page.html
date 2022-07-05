@@ -5,6 +5,7 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <form [formGroup]="registrovacuna" (ngSubmit)="guardarVacuna()">
             <h1>REGISTRO DE VACUNAS</h1>
             <ion-grid>
                 <ion-row>
@@ -12,10 +13,12 @@
                         <div class="col_div">
                             <ion-list>
                                 <ion-item>
-                                    <ion-input type="text" value="" placeholder="DENOMINACION DE VACUNA"></ion-input>
+                                    <ion-input type="text" value="" placeholder="DENOMINACION DE VACUNA" formControlName="vac_denominacion"
+                                    name="vac_denominacion"></ion-input>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-input [value]="dateValue2" placeholder="FECHA DE VACUNACION" readonly></ion-input>
+                                    <ion-input [value]="dateValue2" placeholder="FECHA DE VACUNACION" readonly formControlName="vac_fecha"
+                                    name="vac_fecha"></ion-input>
                                     <ion-button fill="clear" id="open-date-input-2">
                                         <ion-icon icon="calendar"></ion-icon>
                                     </ion-button>
@@ -27,7 +30,8 @@
                                     </ion-popover>
                                 </ion-item>
                                 <ion-item>
-                                    <ion-textarea type="text" value="" placeholder="NOTAS"></ion-textarea>
+                                    <ion-textarea type="text" value="" placeholder="NOTAS" formControlName="vac_notas"
+                                    name="vac_notas"></ion-textarea>
                                 </ion-item>
                             </ion-list>
                         </div>
@@ -35,8 +39,9 @@
                 </ion-row>
             </ion-grid>
             <div class="accion-boton">
-                <ion-button class="guardar-boton" routerLink="/listar-vacunas">GUARDAR</ion-button>
+                <ion-button type="submit" class="guardar-boton" [disabled]="!registrovacuna.valid">GUARDAR</ion-button>
             </div>
+        </form>
         </div>
     </div>
 </ion-content>

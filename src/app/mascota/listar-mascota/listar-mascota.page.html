@@ -1,3 +1,4 @@
+<ion-app>
 <ion-content>
     <div class="main_content_div">
         <ion-buttons slot="start" class="atras_btn">
@@ -7,7 +8,7 @@
         <div class="content_div">
             <h1>LISTADO DE MASCOTAS</h1>
             <ion-list *ngFor="let mascota of mascota">
-                <ion-item color="primary">
+                <ion-item color="primary" [routerLink]="'/editar-mascota/'+mascota.mas_codigo">
                     <ion-avatar>
                         <img src="/assets/icon/mascota.png" />
                     </ion-avatar>
@@ -26,8 +27,9 @@
         </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="secondary" [routerLink]="['/guardar-mascota/0']">
+        <ion-fab-button color="secondary" [routerLink]="'/guardar-mascota/0'">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
 </ion-content>
+</ion-app>

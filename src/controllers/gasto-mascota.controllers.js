@@ -17,11 +17,20 @@ const list = async (req, res) => {
   }
 };
 const listFilter = async (req, res) => {
-  const gasto = await gastoService.listFilter(req.query.q);
+  try {
+    const gasto = await gastoService.listFilter(req.query.q);
   res.send({
     success: true,
     gasto,
   });
+  } catch (error) {
+    console.log(error);
+    res.status(200).send({
+      success: false,
+      error: error.message,
+    });
+  }
+  
 };
 const getById = async (req, res) => {
   const gasto = await gastoService.getById(req.params.id);
@@ -33,11 +42,16 @@ const getById = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const gasto = await gastoService.create(req.body);
+  try {
+    const gasto = await gastoService.create(req.body);
   res.status(202).send({
     success: true,
     gasto,
   });
+  } catch (error) {
+    console.log(error);
+  }
+  
 };
 
 const update = async (req, res) => {

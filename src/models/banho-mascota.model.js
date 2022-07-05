@@ -18,6 +18,10 @@ const banhoModel = sequelize.define(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        ban_mas_codigo: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
     }, {
         tableName: 'banho',
         timestamps: false
