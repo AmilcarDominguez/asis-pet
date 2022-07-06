@@ -38,10 +38,10 @@ export class RegistroUsuarioPage implements OnInit {
     const usuario = this.registrousuario.value;
 
     if (usuario.usu_contra !== usuario.usu_contra2) {
-      const alert = await this.alertController.create({
+      const alert = this.alertController.create({
         message: 'Las contraseñas son distintas'
       });
-      alert.present();
+      (await alert).present();
       return;
     }
     const usuarios = {

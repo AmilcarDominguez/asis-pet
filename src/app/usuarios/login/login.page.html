@@ -5,29 +5,26 @@
             <h1>Bienvenido!</h1>
             <p>Completa los campos para continuar</p>
         </div>
-        <form [formGroup]="login" (ngSubmit)="obtenerLogin()">
         <div class="login-form ion-padding">
             <div class="form-input">
                 <ion-icon name="mail-outline"></ion-icon>
                 <ion-item>
                     <ion-label position="floating">EMAIL</ion-label>
-                    <ion-input type="email" required="usu_correo" 
-                    pattern="^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$)" formControlName="usu_correo"></ion-input>
+                    <ion-input type="email"></ion-input>
                 </ion-item>
             </div>
             <div class="form-input">
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <ion-item>
                     <ion-label position="floating">CONTRASEÑA</ion-label>
-                    <ion-input type="password" formControlName="usu_contra"></ion-input>
+                    <ion-input type="password"></ion-input>
                 </ion-item>
             </div>
         </div>
         <div class="accion-boton ion-padding">
-            <ion-button size="large" class="login-boton" type="submit" [disabled]="!login.valid">Iniciar Sesion</ion-button>
+            <ion-button size="large" class="login-boton" routerLink="/menu">Iniciar Sesion</ion-button>
             <p routerLink="/restaurar-contra-usuario">Olvidaste la contraseña?</p>
-            <ion-button size="large" class="registro-boton" fill="outline" routerLink="/registro-usuario">Registrate!</ion-button>
+            <ion-button size="large" class="registro-boton" fill="outline" routerLink="/registro-usuario/0">Registrate!</ion-button>
         </div>
-    </form>
     </div>
 </ion-content>
