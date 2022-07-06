@@ -17,12 +17,13 @@ const list = async(req, res) => {
       }
 }
 const listFilter = async (req, res) => {
-    const vacuna = await vacunaService.listFilter(req.query.q);
+    const vacuna = await vacunaService.listFilter(req.query.q,req.query.i);
     res.send({
       success: true,
       vacuna,
     });
 }
+
 const getById = async(req, res) => {
     const vacuna = await vacunaService.getById(req.params.id);
     let jsonResultado = req.query;

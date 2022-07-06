@@ -12,7 +12,7 @@ export class ListarPeluqueriaPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
   peluqueria = [];
   private codigo;
-  
+  private texto ='';
   constructor(private mascotapeluqueriaService : MascotapeluqueriaService,   private toastCtrl: ToastController ,
     private activateRoute: ActivatedRoute, public router: Router
     ) { }
@@ -22,10 +22,10 @@ export class ListarPeluqueriaPage implements OnInit {
 
   buscar(event) {
     const valor = event.detail.value;
-    this.mascotapeluqueriaService.Filter(valor).subscribe((data) => {
+    this.mascotapeluqueriaService.Filter(valor,this.codigo).subscribe((data) => {
       console.log(data);
       if (data) {
-        this.peluqueria = data['peluquerias'];
+        this.peluqueria = data['peluqueria'];
       } else {
         this.peluqueria = [];
       }
@@ -37,7 +37,7 @@ export class ListarPeluqueriaPage implements OnInit {
   listarPeluquerias(){
     this.codigo = this.activateRoute.snapshot.params.id;
     console.log("Esto es this.codigo", this.codigo);
-    this.mascotapeluqueriaService.Filter(this.codigo).subscribe(data=>{
+    this.mascotapeluqueriaService.Filter(this.texto,this.codigo).subscribe(data=>{
       console.log("esto es data",data);
       if(data){
         this.peluqueria = data['peluqueria'];

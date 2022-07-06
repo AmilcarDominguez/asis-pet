@@ -31,7 +31,7 @@ export class MascotabanhoService {
   public delete(codigo: String) {
     return this.http.delete(this.x + `/remove/${codigo}`);
   }
-  public Filter(texto: String) {
-    return this.http.get(`http://localhost:3000/banho-filter?q=${texto}`);
+  public Filter(texto, texto2: String) {
+    return this.http.get(`http://localhost:3000/banho-filter?q=${texto}&i=${texto2}`);
   }
 }

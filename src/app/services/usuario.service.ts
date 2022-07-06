@@ -14,7 +14,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient, public router: Router) {}
 
-  listMascotas(): Observable<any> {
+  listUsuarios(): Observable<any> {
     return this.http.get(this.x + `s`);
   }
 
@@ -31,8 +31,21 @@ export class UsuarioService {
       return this.http.post(this.x + `/create`, usuario);
     }
   }
-
   public delete(codigo: String) {
     return this.http.delete(this.x + `/remove/${codigo}`);
+  }
+  public Filter(texto: String) {
+    return this.http.get(`http://localhost:3000/usuario-filter?q=${texto}`);
+  }
+  public login(usu_correo:String, usu_pass:String){
+    const data = {usu_correo, usu_pass};
+    return new Promise(resolve=>{
+      this.http.post(this.x+`/login`,data).subscribe(resp=>{
+        console.log(resp);
+    });
+  }
+  public logout(){
+    this.token = null;
+    this.router.navigate(['/login']);
   }
 }

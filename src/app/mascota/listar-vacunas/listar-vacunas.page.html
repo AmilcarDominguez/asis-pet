@@ -5,6 +5,11 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <ion-searchbar
+          placeholder="Busqueda de Gastos"
+          debounce="500"
+          (ionChange)="buscar($event)"
+        ></ion-searchbar>
             <h1>LISTADO DE VACUNAS</h1>
             <ion-list *ngFor="let vacunas of vacuna">
                 <ion-item color="primary" [routerLink]="'/guardar-vacunas/'+vacunas.vac_codigo+'/'+vacunas.vac_mas_codigo">

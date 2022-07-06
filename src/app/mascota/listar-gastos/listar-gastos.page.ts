@@ -12,7 +12,8 @@ export class ListarGastosPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
   gasto = [];
   private codigo;
-  
+  private texto = '';
+
   constructor(private mascotagastoService : MascotagastoService,   private toastCtrl: ToastController ,
     private activateRoute: ActivatedRoute, public router: Router
     ) { }
@@ -22,10 +23,10 @@ export class ListarGastosPage implements OnInit {
 
   buscar(event) {
     const valor = event.detail.value;
-    this.mascotagastoService.Filter(valor).subscribe((data) => {
-      console.log(data);
+    this.mascotagastoService.Filter(valor,this.codigo).subscribe((data) => {
+      console.log("Esto es cuando busco",data);
       if (data) {
-        this.gasto = data['gastos'];
+        this.gasto = data['gasto'];
       } else {
         this.gasto = [];
       }
@@ -37,7 +38,7 @@ export class ListarGastosPage implements OnInit {
   listarGastos(){
     this.codigo = this.activateRoute.snapshot.params.id;
     console.log("Esto es this.codigo", this.codigo);
-    this.mascotagastoService.Filter(this.codigo).subscribe(data=>{
+    this.mascotagastoService.Filter(this.texto,this.codigo).subscribe(data=>{
       console.log("esto es data",data);
       if(data){
         this.gasto = data['gasto'];

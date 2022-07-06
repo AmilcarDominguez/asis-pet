@@ -5,6 +5,11 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <ion-searchbar
+          placeholder="Busqueda de Gastos"
+          debounce="500"
+          (ionChange)="buscar($event)"
+        ></ion-searchbar>
             <h1>LISTADO DE GASTOS</h1>
             <ion-list *ngFor="let gastos of gasto">
                 <ion-item color="primary" [routerLink]="'/guardar-gastos/'+gastos.gas_codigo+'/'+gastos.gas_mas_codigo">

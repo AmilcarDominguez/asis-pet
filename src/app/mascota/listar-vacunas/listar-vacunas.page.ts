@@ -13,7 +13,7 @@ export class ListarVacunasPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
   vacuna = [];
   private codigo;
-  
+  private texto = '';
   constructor(private mascotavacunaService : MascotavacunaService,   private toastCtrl: ToastController ,
     private activateRoute: ActivatedRoute, public router: Router
     ) { }
@@ -23,10 +23,10 @@ export class ListarVacunasPage implements OnInit {
 
   buscar(event) {
     const valor = event.detail.value;
-    this.mascotavacunaService.Filter(valor).subscribe((data) => {
+    this.mascotavacunaService.Filter(valor,this.codigo).subscribe((data) => {
       console.log(data);
       if (data) {
-        this.vacuna = data['vacunas'];
+        this.vacuna = data['vacuna'];
       } else {
         this.vacuna = [];
       }
@@ -38,7 +38,7 @@ export class ListarVacunasPage implements OnInit {
   listarVacunas(){
     this.codigo = this.activateRoute.snapshot.params.id;
     console.log("Esto es this.codigo", this.codigo);
-    this.mascotavacunaService.Filter(this.codigo).subscribe(data=>{
+    this.mascotavacunaService.Filter(this.texto,this.codigo).subscribe(data=>{
       console.log("esto es data",data);
       if(data){
         this.vacuna = data['vacuna'];

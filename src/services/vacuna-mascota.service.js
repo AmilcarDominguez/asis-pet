@@ -12,24 +12,28 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return vacunaArray;
 };
-const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
-
-    let vacunaResult = await sequelize.query(`SELECT * FROM vacuna WHERE ( vac_mas_codigo = :q)
-                                           ORDER BY vac_codigo`, {
+const listFilter = async (query, query2, pageStar = 1, pageLimit = 10) => {
+    //const usuarioModelResult = await usuarioModel.findAll ();
+    let vacunaResult = await sequelize.query(
+      `SELECT * FROM vacuna
+                                                        WHERE ( (UPPER(vac_denominacion) LIKE :q
+                                                        OR vac_fecha ::text LIKE :q
+                                                        OR UPPER(vac_notas) LIKE :q)
+                                                        AND vac_mas_codigo::text = :c)
+                                                        ORDER BY vac_codigo`,
+      {
         replacements: {
-            q: (query ? '' + query + '' : '')
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+          c: (query2 ? '' + query2 + '' : '')
         },
-        //type:QueryTypes.SELECT
-    });
-  
-  
-    vacunaResult = (vacunaResult && vacunaResult[0]) ? vacunaResult[0] : [];
-  
+        //type: QueryTypes.SELECT
+      }
+    );
+    vacunaResult = vacunaResult && vacunaResult[0] ? vacunaResult[0] : [];
     console.log("vacunaResult", vacunaResult);
-  
     return vacunaResult;
-  
   };
+
 const getById = async(vac_codigo) => {
     const vacunaModelResult = await vacunaModel.findByPk(vac_codigo);
     console.log("find codigo", vac_codigo);

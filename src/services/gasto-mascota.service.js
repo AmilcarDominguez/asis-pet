@@ -12,23 +12,26 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return gastoArray;
 };
-const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
-
-    let gastoResult = await sequelize.query(`SELECT * FROM gasto WHERE ( gas_mas_codigo = :q)
-                                           ORDER BY gas_codigo`, {
+const listFilter = async (query, query2, pageStar = 1, pageLimit = 10) => {
+    //const usuarioModelResult = await usuarioModel.findAll ();
+    let gastoResult = await sequelize.query(
+      `SELECT *  FROM gasto
+                                                        WHERE ((UPPER(gas_descripcion) LIKE :q
+                                                        OR gas_monto ::text LIKE :q
+                                                        OR gas_fecha ::text LIKE :q)
+                                                        AND gas_mas_codigo ::text = :c)
+                                                        ORDER BY gas_codigo`,
+      {
         replacements: {
-            q: (query ? '' + query + '' : '')
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+          c: (query2 ? '' + query2 + '' : ''),
         },
-        //type:QueryTypes.SELECT
-    });
-
-
-    gastoResult = (gastoResult && gastoResult[0]) ? gastoResult[0] : [];
-
+        //type: QueryTypes.SELECT
+      }
+    );
+    gastoResult = gastoResult && gastoResult[0] ? gastoResult[0] : [];
     console.log("gastoResult", gastoResult);
-
     return gastoResult;
-
 };
 
 const getById = async(gas_codigo) => {

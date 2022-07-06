@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController, IonList, ToastController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-login',
@@ -10,10 +10,29 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class LoginPage implements OnInit {
 
-
-  constructor( ) { }
-
-  ngOnInit() {
+  @ViewChild(IonList) ionList: IonList;
+  usuario = [];
+  loginusuario = this.fb.group({
+    usu_correo: ['', Validators.required],
+    usu_contra: ['', Validators.required],
+  });
+  constructor(private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    public router: Router,
+    private activateRoute: ActivatedRoute,
+    private toastCtrl: ToastController) { }
+  ngOnInit(){
   }
-
+  async loginUsuario() {
+    const valido = await this.usuarioService.login(this.login.value.usu_correo,this.login.value.usu_contra);
+    if (valido) {
+      this.router.navigate(['/menu']);
+    } else {
+      const toast = await this.toastCtrl.create({
+        message: 'LAS CONTRASEÑAS SON DIFERENTES, VUELVE A INTENTAR',
+        duration: 2000,
+      });
+      toast.present();
+    }
+  }
 }

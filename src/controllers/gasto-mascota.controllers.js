@@ -18,7 +18,7 @@ const list = async (req, res) => {
 };
 const listFilter = async (req, res) => {
   try {
-    const gasto = await gastoService.listFilter(req.query.q);
+    const gasto = await gastoService.listFilter(req.query.q,req.query.i);
   res.send({
     success: true,
     gasto,
@@ -32,6 +32,7 @@ const listFilter = async (req, res) => {
   }
   
 };
+
 const getById = async (req, res) => {
   const gasto = await gastoService.getById(req.params.id);
   let jsonResultado = req.query;

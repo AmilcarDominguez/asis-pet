@@ -96,6 +96,7 @@ const login = async (data) => {
       //type: QueryTypes.SELECT,
     }
   );
+  console.log("usuarioResult", usuarioResult);
   usuarioResult = usuarioResult && usuarioResult[0] ? usuarioResult[0] : [];
   console.log("usuarioResult", usuarioResult);
   if (usuarioResult && usuarioResult.length > 0) {
@@ -132,13 +133,14 @@ const login = async (data) => {
   }
 };
 const logout = async (usuarioId) => {
+  console.log("Este es dentro",usuarioId);
   let updateTokenUsuarioResult = await sequelize.query(
     `UPDATE usuario 
                                                     SET usu_token = null
                                                     WHERE usu_codigo = :i`,
     {
       replacements: {
-        i: usuarioId
+        i: usuarioId,
       },
       //type: QueryTypes.UPDATE,
     }

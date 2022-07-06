@@ -67,6 +67,10 @@ ion-content {
             padding: 0px;
             position: relative;
             margin-top: 50px;
+            margin-right: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .col_div {
             display: flex;
@@ -74,6 +78,7 @@ ion-content {
             align-items: center;
             justify-content: center;
             text-align: center;
+            margin-bottom: 50px;
             height: 150px;
             width: 95%;
             box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);

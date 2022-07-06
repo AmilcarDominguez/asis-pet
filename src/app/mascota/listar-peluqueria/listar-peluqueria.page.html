@@ -5,6 +5,11 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <ion-searchbar
+            placeholder="Busqueda de Gastos"
+            debounce="500"
+            (ionChange)="buscar($event)"
+          ></ion-searchbar>
             <h1>LISTADO DE IDAS A PELUQUERIA</h1>
             <ion-list *ngFor="let peluquerias of peluqueria">
                 <ion-item color="primary" [routerLink]="'/guardar-peluqueria/'+peluquerias.pel_codigo+'/'+peluquerias.pel_mas_codigo">

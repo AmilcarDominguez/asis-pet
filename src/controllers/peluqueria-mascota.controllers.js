@@ -17,12 +17,13 @@ const list = async(req, res) => {
       }
 }
 const listFilter = async (req, res) => {
-    const peluqueria = await peluqueriaService.listFilter(req.query.q);
+    const peluqueria = await peluqueriaService.listFilter(req.query.q,req.query.i);
     res.send({
       success: true,
       peluqueria,
     });
 }
+
 const getById = async(req, res) => {
     const peluqueria = await peluqueriaService.getById(req.params.id);
     let jsonResultado = req.query;

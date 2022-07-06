@@ -6,7 +6,6 @@ const authorization = async (request, response, next) => {
   const token = request.headers["authorization"];
   console.log("Header Auth", request.headers["authorization"]);
   // verificar si el token existe en la bd
-
   let usuarioResult = await sequelize.query(
                                           `SELECT usu_codigo, usu_nombre, usu_token
                                            FROM usuario
@@ -18,7 +17,9 @@ const authorization = async (request, response, next) => {
       //type: QueryTypes.SELECT,
     }
   );
-  console.log("Este es usuario result",usuarioResult)
+  usuarioResult = usuarioResult && usuarioResult[0] ? usuarioResult[0] : [];
+  console.log("Este es usuario result",usuarioResult);
+
   if (usuarioResult && usuarioResult.length > 0) {
     request.usuarioId = usuarioResult[0].usu_codigo;
     console.log("Este es usuarioId",request.usuarioId);

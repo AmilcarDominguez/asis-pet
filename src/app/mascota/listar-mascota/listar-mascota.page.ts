@@ -17,11 +17,10 @@ export class ListarMascotaPage implements OnInit {
 
   buscar(event) {
     const valor = event.detail.value;
-
     this.mascotaService.Filter(valor).subscribe((data) => {
       console.log(data);
       if (data) {
-        this.mascota = data['mascotas'];
+        this.mascota = data['mascota'];
       } else {
         this.mascota = [];
       }

@@ -17,11 +17,11 @@ const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
     let mascotaResult = await sequelize.query(
       `SELECT * FROM mascota
                                                         WHERE (UPPER(mas_nombre) LIKE :q
-                                                        OR UPPER(mas_tipo_codigo) LIKE :q
                                                         OR UPPER(mas_sexo) LIKE :q
                                                         OR UPPER(mas_raza) LIKE :q
-                                                        OR UPPER(mas_fecha_nacimiento) LIKE :q
-                                                        OR UPPER(mas_notas) LIKE :q)
+                                                        OR mas_fecha_nacimiento ::text LIKE :q
+                                                        OR UPPER(mas_notas) LIKE :q
+                                                        OR UPPER(mas_tipo) LIKE :q)
                                                         ORDER BY mas_codigo`,
       {
         replacements: {

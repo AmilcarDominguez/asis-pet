@@ -12,24 +12,26 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return peluqueriaArray;
 };
-const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
-
-    let peluqueriaResult = await sequelize.query(`SELECT * FROM peluqueria WHERE ( pel_mas_codigo = :q)
-                                           ORDER BY pel_codigo`, {
+const listFilter = async (query,query2, pageStar = 1, pageLimit = 10) => {
+    //const usuarioModelResult = await usuarioModel.findAll ();
+    let peluqueriaResult = await sequelize.query(
+      `SELECT * FROM peluqueria
+                                                        WHERE ( (pel_fecha::text LIKE :q
+                                                            OR UPPER(pel_notas) LIKE :q)
+                                                            AND pel_mas_codigo::text = :c)
+                                                        ORDER BY pel_codigo`,
+      {
         replacements: {
-            q: (query ? '' + query + '' : '')
+          q: query ? "%" + query.toUpperCase() + "%" : "%",
+          c: (query2 ? '' + query2 + '' : '')
         },
-        //type:QueryTypes.SELECT
-    });
-  
-  
-    peluqueriaResult = (peluqueriaResult && peluqueriaResult[0]) ? peluqueriaResult[0] : [];
-  
+        //type: QueryTypes.SELECT
+      }
+    );
+    peluqueriaResult = peluqueriaResult && peluqueriaResult[0] ? peluqueriaResult[0] : [];
     console.log("peluqueriaResult", peluqueriaResult);
-  
     return peluqueriaResult;
-  
-  };
+};
 const getById = async(pel_codigo) => {
     const peluqueriaModelResult = await peluqueriaModel.findByPk(pel_codigo);
     console.log("find codigo", pel_codigo);

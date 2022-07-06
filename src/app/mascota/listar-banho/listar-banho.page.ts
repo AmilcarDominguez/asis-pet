@@ -12,7 +12,7 @@ export class ListarBanhoPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
   banho = [];
   private codigo;
-  
+  private texto = '';
   constructor(private mascotabanhoService : MascotabanhoService,   private toastCtrl: ToastController ,
     private activateRoute: ActivatedRoute, public router: Router
     ) { }
@@ -22,10 +22,10 @@ export class ListarBanhoPage implements OnInit {
 
   buscar(event) {
     const valor = event.detail.value;
-    this.mascotabanhoService.Filter(valor).subscribe((data) => {
+    this.mascotabanhoService.Filter(valor,this.codigo).subscribe((data) => {
       console.log(data);
       if (data) {
-        this.banho = data['banhos'];
+        this.banho = data['banho'];
       } else {
         this.banho = [];
       }
@@ -37,7 +37,7 @@ export class ListarBanhoPage implements OnInit {
   listarBanhos(){
     this.codigo = this.activateRoute.snapshot.params.id;
     console.log("Esto es this.codigo", this.codigo);
-    this.mascotabanhoService.Filter(this.codigo).subscribe(data=>{
+    this.mascotabanhoService.Filter(this.texto,this.codigo).subscribe(data=>{
       console.log("esto es data",data);
       if(data){
         this.banho = data['banho'];

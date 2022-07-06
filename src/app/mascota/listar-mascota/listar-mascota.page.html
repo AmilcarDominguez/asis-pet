@@ -1,35 +1,46 @@
 <ion-app>
-<ion-content>
+  <ion-content>
     <div class="main_content_div">
-        <ion-buttons slot="start" class="atras_btn">
-            <ion-back-button defaultHref="/"></ion-back-button>
-            <ion-label>ATRAS</ion-label>
-        </ion-buttons>
-        <div class="content_div">
-            <h1>LISTADO DE MASCOTAS</h1>
-            <ion-list *ngFor="let mascota of mascota">
-                <ion-item color="primary" [routerLink]="'/editar-mascota/'+mascota.mas_codigo">
-                    <ion-avatar>
-                        <img src="/assets/icon/mascota.png" />
-                    </ion-avatar>
-                    <ion-label>
-                        <h2>{{this.mascota.mas_nombre}}</h2>
-                        <h3>{{this.mascota.mas_tipo}}</h3>
-                        <h3>{{this.mascota.mas_raza}}</h3>
-                    </ion-label>
-                </ion-item>
-                <ion-fab horizontal="end" vertical="center" slot="fixed">
-                    <ion-fab-button color="danger" (click)="borrarmascota(mascota.mas_codigo)">
-                        <ion-icon name="trash-outline"></ion-icon>
-                    </ion-fab-button>
-                </ion-fab>
-            </ion-list>
-        </div>
+      <ion-buttons slot="start" class="atras_btn">
+        <ion-back-button defaultHref="/"></ion-back-button>
+        <ion-label>ATRAS</ion-label>
+      </ion-buttons>
+      <div class="content_div">
+        <ion-searchbar
+          placeholder="Busqueda de Mascotas"
+          debounce="500"
+          (ionChange)="buscar($event)"
+        ></ion-searchbar>
+        <h1>LISTADO DE MASCOTAS</h1>
+        <ion-list *ngFor="let mascota of mascota">
+          <ion-item
+            color="primary"
+            [routerLink]="'/editar-mascota/'+mascota.mas_codigo"
+          >
+            <ion-avatar>
+              <img src="/assets/icon/mascota.png" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{this.mascota.mas_nombre}}</h2>
+              <h3>{{this.mascota.mas_tipo}}</h3>
+              <h3>{{this.mascota.mas_raza}}</h3>
+            </ion-label>
+          </ion-item>
+          <ion-fab horizontal="end" vertical="center" slot="fixed">
+            <ion-fab-button
+              color="danger"
+              (click)="borrarmascota(mascota.mas_codigo)"
+            >
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </ion-list>
+      </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="secondary" [routerLink]="'/guardar-mascota/0'">
-            <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
+      <ion-fab-button color="secondary" [routerLink]="'/guardar-mascota/0'">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
     </ion-fab>
-</ion-content>
+  </ion-content>
 </ion-app>

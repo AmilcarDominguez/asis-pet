@@ -19,7 +19,7 @@ const list = async (req, res) => {
 
 const listFilter = async (req, res) => {
   try {
-    const banho = await banhoService.listFilter(req.query.q);
+    const banho = await banhoService.listFilter(req.query.q,req.query.i);
   res.send({
     success: true,
     banho,
