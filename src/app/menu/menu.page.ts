@@ -39,4 +39,9 @@ export class MenuPage implements OnInit {
     console.log("ESte es this.codigo",this.codigo);
     this.router.navigate(['/perfil-usuario/'+this.codigo]);
   }
+  mascotaUsuario(){
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("ESte es this.codigo",this.codigo);
+    this.router.navigate(['/listar-mascota/'+this.codigo]);
+  }
 }

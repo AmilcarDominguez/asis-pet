@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./usuarios/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
   {
-    path: 'listar-mascota',
+    path: 'listar-mascota/:id',
     loadChildren: () => import('./mascota/listar-mascota/listar-mascota.module').then( m => m.ListarMascotaPageModule)
   },
   {
@@ -39,11 +39,11 @@ const routes: Routes = [
     loadChildren: () => import('./usuarios/cambiar-contra/cambiar-contra.module').then( m => m.CambiarContraPageModule)
   },
   {
-    path: 'guardar-mascota/:id',
+    path: 'guardar-mascota/:id/:co',
     loadChildren: () => import('./mascota/guardar-mascota/guardar-mascota.module').then( m => m.GuardarMascotaPageModule)
   },
   {
-    path: 'editar-mascota/:id',
+    path: 'editar-mascota/:id/:co',
     loadChildren: () => import('./mascota/editar-mascota/editar-mascota.module').then( m => m.EditarMascotaPageModule)
   },
   {

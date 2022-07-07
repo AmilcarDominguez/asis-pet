@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonList, ToastController } from '@ionic/angular';
 import { MascotaService } from 'src/app/services/mascota.service';
 
@@ -10,14 +11,17 @@ import { MascotaService } from 'src/app/services/mascota.service';
 export class ListarMascotaPage implements OnInit {
   @ViewChild(IonList) ionList: IonList;
   mascota = [];
-  constructor(private mascotaService : MascotaService,   private toastCtrl: ToastController) { }
+  private codigo;
+  private texto = '';
+  constructor(private mascotaService : MascotaService,   private toastCtrl: ToastController, 
+    private activateRoute: ActivatedRoute, public router: Router) { }
   ngOnInit(){
    this.listarMascotas();
   }
 
   buscar(event) {
     const valor = event.detail.value;
-    this.mascotaService.Filter(valor).subscribe((data) => {
+    this.mascotaService.Filter(valor,this.codigo).subscribe((data) => {
       console.log(data);
       if (data) {
         this.mascota = data['mascota'];
@@ -31,16 +35,23 @@ export class ListarMascotaPage implements OnInit {
   }
 
   listarMascotas(){
-    this.mascotaService.listMascotas().subscribe(data=>{
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("Esto es this.codigo", this.codigo);
+    this.mascotaService.Filter(this.texto,this.codigo).subscribe(data=>{
       console.log(data);
-      if(data.success){
-        this.mascota = data.mascota;
+      if(data){
+        this.mascota = data['mascota'];
       }else{
         this.mascota= [];
       }
     });
+    console.log("esto esmascota",this.mascota);
   }
-
+  guardarmascota(){
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("Esto es this.codigo", this.codigo);
+    this.router.navigate(['/guardar-mascota/0/'+this.codigo]);
+  }
   borrarmascota(codigo) {
     this.mascotaService.delete(codigo).subscribe(async (data) => {
       const message = data['success']

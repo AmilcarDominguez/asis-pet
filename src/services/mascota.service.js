@@ -12,20 +12,22 @@ const list = async(query, pageStart = 1, pageLimit = 10) => {
     }
     return mascotaArray;
 };
-const listFilter = async (query, pageStar = 1, pageLimit = 10) => {
+const listFilter = async (query,query2, pageStar = 1, pageLimit = 10) => {
     //const mascotaModelResult = await mascotaModel.findAll ();
     let mascotaResult = await sequelize.query(
       `SELECT * FROM mascota
-                                                        WHERE (UPPER(mas_nombre) LIKE :q
+                                                        WHERE ((UPPER(mas_nombre) LIKE :q
                                                         OR UPPER(mas_sexo) LIKE :q
                                                         OR UPPER(mas_raza) LIKE :q
                                                         OR mas_fecha_nacimiento ::text LIKE :q
                                                         OR UPPER(mas_notas) LIKE :q
                                                         OR UPPER(mas_tipo) LIKE :q)
+                                                        AND mas_usu_codigo ::text = :c)
                                                         ORDER BY mas_codigo`,
       {
         replacements: {
           q: query ? "%" + query.toUpperCase() + "%" : "%",
+          c: (query2 ? '' + query2 + '' : ''),
         },
         //type: QueryTypes.SELECT
       }

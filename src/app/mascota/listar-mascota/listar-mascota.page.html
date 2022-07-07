@@ -15,7 +15,7 @@
         <ion-list *ngFor="let mascota of mascota">
           <ion-item
             color="primary"
-            [routerLink]="'/editar-mascota/'+mascota.mas_codigo"
+            [routerLink]="'/editar-mascota/'+mascota.mas_codigo+'/'+mascota.mas_usu_codigo"
           >
             <ion-avatar>
               <img src="/assets/icon/mascota.png" />
@@ -38,7 +38,7 @@
       </div>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-      <ion-fab-button color="secondary" [routerLink]="'/guardar-mascota/0'">
+      <ion-fab-button color="secondary" (click)="guardarmascota()">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>

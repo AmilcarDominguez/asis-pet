@@ -1,7 +1,7 @@
 <ion-content>
   <div class="main_content_div">
     <ion-buttons slot="start" class="atras_btn">
-      <ion-back-button defaultHref="/listar-mascota"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
       <ion-label>ATRAS</ion-label>
     </ion-buttons>
     <div class="content_div">
@@ -14,7 +14,7 @@
               <div class="col_div">
                 <ion-list>
                   <ion-item>
-                    <ion-avatar slot="start" routerLink="/guardar-mascota">
+                    <ion-avatar slot="start">
                       <img src="/assets/icon/mascota.png" />
                     </ion-avatar>
                     <ion-list>
@@ -65,7 +65,7 @@
                       <ion-fab horizontal="end" vertical="bottom" slot="fixed">
                         <ion-fab-button
                           color="primary"
-                          [routerLink]="'/guardar-mascota/'+ this.registromascota.value['mas_codigo']"
+                          [routerLink]="'/guardar-mascota/'+ this.registromascota.value['mas_codigo']+'/'+this.registromascota.value['mas_usu_codigo']"
                           [disabled]="!registromascota.valid"
                         >
                           <ion-icon name="information-outline"></ion-icon>

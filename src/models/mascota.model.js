@@ -33,6 +33,10 @@ const mascotaModel = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        mas_usu_codigo: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
     }, {
         tableName: 'mascota',
         timestamps: false
