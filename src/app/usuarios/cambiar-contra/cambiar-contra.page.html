@@ -5,6 +5,7 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <form [formGroup]="registrousuario" (ngSubmit)="guardarUsuario()">
             <h1>SEGURIDAD</h1>
             <ion-grid>
                 <ion-row>
@@ -15,31 +16,35 @@
                                     <ion-icon name="lock-closed-outline"></ion-icon>
                                     <ion-item>
                                         <ion-label position="floating">Contraseña Actual</ion-label>
-                                        <ion-input type="password"></ion-input>
+                                        <ion-input type="password" formControlName="usu_contra"
+                                        value="{{this.usu_contra}}"></ion-input>
                                     </ion-item>
                                 </div>
                                 <div class="form-input">
                                     <ion-icon name="lock-closed-outline"></ion-icon>
                                     <ion-item>
                                         <ion-label position="floating">Contraseña Nueva</ion-label>
-                                        <ion-input type="password"></ion-input>
+                                        <ion-input type="password" formControlName="usu_contra2"
+                                        value="{{this.usu_contra2}}"></ion-input>
                                     </ion-item>
                                 </div>
                                 <div class="form-input">
                                     <ion-icon name="lock-closed-outline"></ion-icon>
                                     <ion-item>
                                         <ion-label position="floating">Repetir Contraseña</ion-label>
-                                        <ion-input type="email"></ion-input>
+                                        <ion-input type="password" formControlName="usu_contra3"
+                                        value="{{this.usu_contra3}}"></ion-input>
                                     </ion-item>
                                 </div>
                                 <div class="accion-boton ion-padding">
-                                    <ion-button class="seguridad-boton">GUARDAR</ion-button>
+                                    <ion-button (click)="guardarUsuario()" class="seguridad-boton">GUARDAR</ion-button>
                                 </div>
                             </ion-list>
                         </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+        </form>
         </div>
     </div>
 </ion-content>

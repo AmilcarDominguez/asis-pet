@@ -3,7 +3,8 @@ const { sequelize } = require("../services/bd.service");
 const { QueryTypes } = require("sequelize");
 
 const authorization = async (request, response, next) => {
-  const token = request.headers["authorization"];
+  try {
+    const token = request.headers["authorization"];
   console.log("Header Auth", request.headers["authorization"]);
   // verificar si el token existe en la bd
   let usuarioResult = await sequelize.query(
@@ -31,6 +32,10 @@ const authorization = async (request, response, next) => {
       error: "no se pudo autenticar",
     });
   }
+  } catch (error) {
+    console.log(error);
+  }
+  
 };
 
 module.exports = {

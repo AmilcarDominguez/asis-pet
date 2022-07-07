@@ -21,6 +21,10 @@ const usuarioModel = sequelize.define(
         usu_contra: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        usu_token: {
+            type: DataTypes.STRING,
+            allowNull: false,
         }
     }, {
         tableName: 'usuario',

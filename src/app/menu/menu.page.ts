@@ -20,8 +20,9 @@ export class MenuPage implements OnInit {
   }
   salirUsuario() {
     this.codigo = this.activateRoute.snapshot.params.id;
-    this.usuarioService.logout(this.codigo).subscribe(async data=>{
-      console.log(data);
+    console.log("ESte es this.codigo",this.codigo);
+    this.usuarioService.logout(this.codigo).subscribe(async (data)=>{
+      console.log("Esto es",data);
       if(data['success']){
         this.router.navigate(['/login']);
       }else{
@@ -32,5 +33,10 @@ export class MenuPage implements OnInit {
         toast.present();
       }
     });
+  }
+  perfilUsuario(){
+    this.codigo = this.activateRoute.snapshot.params.id;
+    console.log("ESte es this.codigo",this.codigo);
+    this.router.navigate(['/perfil-usuario/'+this.codigo]);
   }
 }

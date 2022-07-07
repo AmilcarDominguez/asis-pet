@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UsuarioService {
-  token: String = null;
+
   codigo:String = null;
 
   private x = 'http://localhost:3000/usuario';
@@ -45,3 +45,5 @@ export class UsuarioService {
     return this.http.post(this.x+`/logout`,usuarioId);
   }
 }
+
+

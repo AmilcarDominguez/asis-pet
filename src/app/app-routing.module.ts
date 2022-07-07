@@ -27,7 +27,7 @@ const routes: Routes = [
     loadChildren: () => import('./ajustes/ajustes.module').then( m => m.AjustesPageModule)
   },
   {
-    path: 'perfil-usuario',
+    path: 'perfil-usuario/:id',
     loadChildren: () => import('./usuarios/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   },
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
     loadChildren: () => import('./mascota/listar-mascota/listar-mascota.module').then( m => m.ListarMascotaPageModule)
   },
   {
-    path: 'cambiar-contra',
+    path: 'cambiar-contra/:id',
     loadChildren: () => import('./usuarios/cambiar-contra/cambiar-contra.module').then( m => m.CambiarContraPageModule)
   },
   {

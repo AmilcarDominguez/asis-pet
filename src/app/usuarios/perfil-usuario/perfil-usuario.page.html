@@ -5,6 +5,7 @@
             <ion-label>ATRAS</ion-label>
         </ion-buttons>
         <div class="content_div">
+            <form [formGroup]="registrousuario" (ngSubmit)="guardarUsuario()">
             <h1>MI PERFIL</h1>
             <p>INFORMACION DE LA CUENTA</p>
             <ion-grid>
@@ -16,18 +17,20 @@
                                     <ion-icon name="person-outline"></ion-icon>
                                     <ion-item>
                                         <ion-label position="floating">NOMBRE DE USUARIO</ion-label>
-                                        <ion-input type="text" value="Amilcar Dominguez"></ion-input>
+                                        <ion-input type="text" formControlName="usu_nombre"
+                                        value="{{this.usu_nombre}}"></ion-input>
                                     </ion-item>
                                 </div>
                                 <div class="form-input">
                                     <ion-icon name="mail-outline"></ion-icon>
                                     <ion-item>
                                         <ion-label position="floating">EMAIL</ion-label>
-                                        <ion-input type="email" value="AmilcarDominguez1234@gmail.com"></ion-input>
+                                        <ion-input type="email" formControlName="usu_correo"
+                                        value="{{this.usu_correo}}"></ion-input>
                                     </ion-item>
                                 </div>
                                 <div class="accion-boton">
-                                    <ion-button class="perfil-boton">GUARDAR</ion-button>
+                                    <ion-button (click)="guardarUsuario()" class="perfil-boton">GUARDAR</ion-button>
                                 </div>
                             </ion-list>
                         </div>
@@ -41,12 +44,13 @@
                         <div class="col_div">
                             <ion-item slot="header" class="g">
                                 <ion-label>CAMBIAR CONTRASEÑA</ion-label>
-                                <ion-icon name="chevron-forward-outline" routerLink="/cambiar-contra"></ion-icon>
+                                <ion-icon name="chevron-forward-outline" [routerLink]="'/cambiar-contra/'+ this.registrousuario.value['usu_codigo']"></ion-icon>
                             </ion-item>
                         </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+        </form>
         </div>
     </div>
 </ion-content>

@@ -18,6 +18,7 @@ export class RegistroUsuarioPage implements OnInit {
     usu_correo: ['', Validators.required],
     usu_contra: ['', Validators.required],
     usu_contra2: ['', Validators.required],
+    usu_token:['']
   });
 
   constructor(
@@ -47,6 +48,7 @@ export class RegistroUsuarioPage implements OnInit {
         usu_nombre: usuario.usu_nombre,
         usu_correo: usuario.usu_correo,
         usu_contra: usuario.usu_contra,
+        usu_token: usuario.usu_token
       };
       this.usuarioService.create(usuarios).subscribe(async (data: any) => {
         console.log('DATA', usuarios);
@@ -55,6 +57,7 @@ export class RegistroUsuarioPage implements OnInit {
           usu_correo: ['', Validators.required],
           usu_contra: ['', Validators.required],
           usu_contra2: ['', Validators.required],
+          usu_token: [''],
         });
         this.router.navigate(['/login']);
       });
