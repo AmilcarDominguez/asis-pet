@@ -9,8 +9,9 @@ import { UsuarioService } from '../services/usuario.service';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  private codigo;
   private token;
+  private codigo;
+  usuario =[];
   constructor(
     private usuarioService: UsuarioService,
     public router: Router,

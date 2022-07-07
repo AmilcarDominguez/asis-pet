@@ -6,7 +6,7 @@
         <div class="user_div">
             <div class="first_div">
                 <ion-label class="welcome">Bienvenido</ion-label>
-                <ion-label class="username">amilcar dominguez</ion-label>
+                <ion-label class="username">Amilcar Dominguez</ion-label>
             </div>
             <div class="user_back" [style.backgroundImage]="'url(assets/icon/foto.jpg)'"></div>
         </div>
@@ -16,7 +16,7 @@
                 <ion-row>
                     <ion-col size="15">
                         <div class="col_div">
-                            <img src="assets/icon/perfil.png" >
+                            <img src="assets/icon/perfil.png" (click)="perfilUsuario()">
                             <ion-label>MI PERFIL</ion-label>
                         </div>
                     </ion-col>
