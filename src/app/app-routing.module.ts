@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./usuarios/restaurar-contra-usuario/restaurar-contra-usuario.module').then( m => m.RestaurarContraUsuarioPageModule)
   },
   {
-    path: 'menu',
+    path: 'menu/:id',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
   {

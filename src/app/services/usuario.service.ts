@@ -37,15 +37,11 @@ export class UsuarioService {
   public Filter(texto: String) {
     return this.http.get(`http://localhost:3000/usuario-filter?q=${texto}`);
   }
-  public login(usu_correo:String, usu_pass:String){
-    const data = {usu_correo, usu_pass};
-    return new Promise(resolve=>{
-      this.http.post(this.x+`/login`,data).subscribe(resp=>{
-        console.log(resp);
-    });
+  public login(usu_correo, usu_contra:String){
+    const data = {usu_correo,usu_contra};
+    return this.http.post(this.x+`/login`,data);
   }
-  public logout(){
-    this.token = null;
-    this.router.navigate(['/login']);
+  public logout(usuarioId){
+    return this.http.post(this.x+`/logout`,usuarioId);
   }
 }

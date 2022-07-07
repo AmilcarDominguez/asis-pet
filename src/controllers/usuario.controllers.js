@@ -59,7 +59,7 @@ const login = async (req, res) => {
     const usuario = await usuarioService.login(req.body);
     res.status(202).send({
       success: true,
-      token: usuario.usu_token,
+      usuario,
     });
   } catch (error) {
     //const usuario = await usuarioService.login(req.body);
@@ -82,7 +82,7 @@ const logout = async (req, res) => {
         success: false,
         error: error.message,
       });
-      console.log("error", error,usuarioId);
+      console.log("error", error,req.usuarioId);
   }
 };
 module.exports = {

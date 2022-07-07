@@ -86,22 +86,22 @@ const login = async (data) => {
   //buscar usuario por nombre y contraseña
   let usuarioResult = await sequelize.query(
                                             `SELECT usu_codigo, usu_nombre, usu_token FROM usuario 
-                                            WHERE usu_nombre = :n
+                                            WHERE usu_correo = :n
                                             AND usu_contra = :p LIMIT 1`,
     {
       replacements: {
-        n: data.usu_nombre,
+        n: data.usu_correo,
         p: data.usu_contra,
       },
       //type: QueryTypes.SELECT,
     }
   );
-  console.log("usuarioResult", usuarioResult);
   usuarioResult = usuarioResult && usuarioResult[0] ? usuarioResult[0] : [];
   console.log("usuarioResult", usuarioResult);
   if (usuarioResult && usuarioResult.length > 0) {
     if (usuarioResult[0].usu_token && usuarioResult[0].usu_codigo != '') {
       return {
+        usu_codigo:usuarioResult[0].usu_codigo,
         usu_token: usuarioResult[0].usu_token
       };
     } else {
@@ -126,10 +126,11 @@ const login = async (data) => {
       );
       return {
         usu_token: token,
+        usu_codigo: usuarioResult[0].usu_codigo,
       };
     }
   } else {
-    throw new Error("Datos de nombre de usuario o contrasenha invalidos");
+    throw new Error("DATOS DE CORREO O CONTRASEÑA INVALIDOS");
   }
 };
 const logout = async (usuarioId) => {

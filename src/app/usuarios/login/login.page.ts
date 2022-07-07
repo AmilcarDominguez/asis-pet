@@ -24,15 +24,18 @@ export class LoginPage implements OnInit {
   ngOnInit(){
   }
   async loginUsuario() {
-    const valido = await this.usuarioService.login(this.login.value.usu_correo,this.login.value.usu_contra);
-    if (valido) {
-      this.router.navigate(['/menu']);
-    } else {
-      const toast = await this.toastCtrl.create({
-        message: 'LAS CONTRASEÑAS SON DIFERENTES, VUELVE A INTENTAR',
-        duration: 2000,
-      });
-      toast.present();
-    }
+    this.usuarioService.login(
+      this.loginusuario.value.usu_correo,this.loginusuario.value.usu_contra).subscribe(async data=>{
+      console.log(data);
+      if(data['success']){
+        this.router.navigate(['/menu/'+data['usuario'].usu_codigo]);
+      }else{
+        const toast = await this.toastCtrl.create({
+          message: data['error'],
+          duration: 2000,
+        });
+        toast.present();
+      }
+    });
   }
 }
