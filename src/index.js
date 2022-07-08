@@ -15,5 +15,4 @@ require('./routes/gasto-mascota.route')(app);
 require('./routes/vacuna-mascota.route')(app);
 require('./routes/peluqueria-mascota.route')(app);
 require('./routes/banho-mascota.route')(app);
-require('./routes/tipomascota-mascota.route')(app);
 app.listen(3000, () => console.log("listening on port 3000"));
