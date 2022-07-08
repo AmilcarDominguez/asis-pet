@@ -1,57 +1,72 @@
 <ion-content id="principal">
-    <div class="main_content_div">
-        <ion-buttons slot="start" class="menu_btn">
-            <ion-menu-button auto-hide="false"></ion-menu-button>
-        </ion-buttons>
-        <div class="user_div">
-            <div class="first_div">
-                <ion-label class="welcome">Bienvenido</ion-label>
-                <ion-label class="username">Amilcar Dominguez</ion-label>
+  <div class="main_content_div">
+    <ion-buttons slot="start" class="menu_btn">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <div class="user_div">
+      <div class="first_div">
+        <ion-label class="welcome">Bienvenido</ion-label>
+        <ion-label class="username">Amilcar Dominguez</ion-label>
+      </div>
+      <div
+        class="user_back"
+        [style.backgroundImage]="'url(assets/icon/foto.jpg)'"
+      ></div>
+    </div>
+    <div class="content_div">
+      <!-- <ion-label class="hello_lbl">Hello, please</ion-label> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="15">
+            <div class="col_div">
+              <img src="assets/icon/perfil.png" (click)="perfilUsuario()" />
+              <ion-label>MI PERFIL</ion-label>
             </div>
-            <div class="user_back" [style.backgroundImage]="'url(assets/icon/foto.jpg)'"></div>
-        </div>
-        <div class="content_div">
-            <!-- <ion-label class="hello_lbl">Hello, please</ion-label> -->
-            <ion-grid>
-                <ion-row>
-                    <ion-col size="15">
-                        <div class="col_div">
-                            <img src="assets/icon/perfil.png" (click)="perfilUsuario()">
-                            <ion-label>MI PERFIL</ion-label>
-                        </div>
-                    </ion-col>
-                    <ion-col size="15">
-                        <div class="col_div">
-                            <img src="assets/icon/mascota.png" (click)="mascotaUsuario()">
-                            <ion-label>MIS MASCOTAS</ion-label>
-                        </div>
-                    </ion-col>
-                    <!--<ion-col size="6">
+          </ion-col>
+          <ion-col size="15">
+            <div class="col_div">
+              <img src="assets/icon/mascota.png" (click)="mascotaUsuario()" />
+              <ion-label>MIS MASCOTAS</ion-label>
+            </div>
+          </ion-col>
+          <!--<ion-col size="6">
                         <div class="col_div">
                             <img src="assets/icon/entretenimiento.png">
                             <ion-label>ENTRETENIMIENTO</ion-label>
                         </div>
                     </ion-col>-->
-                </ion-row>
-            </ion-grid>
-        </div>
+        </ion-row>
+      </ion-grid>
     </div>
+  </div>
 </ion-content>
 <ion-menu side="start" contentId="principal">
-    <ion-content>
-        <div class="menu_lateral">
-            <img src="assets/icon/logo.png">
-            <ion-list>
+  <ion-content>
+    <div class="menu_lateral">
+      <img src="assets/icon/logo.png" />
+      <ion-list>
+        <ion-item>
+          <ion-accordion-group>
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-icon name="construct-outline"></ion-icon>
+                <ion-label>PERSONALIZACION</ion-label>
+              </ion-item>
+              <ion-list slot="content" class="con">
                 <ion-item>
-                    <ion-icon name="construct-outline"></ion-icon>
-                    <ion-label>CONFIGURACION</ion-label>
-                </ion-item>
-               <!-- <ion-item (click)="salirUsuario()"> -->
-                <ion-item>
-                    <ion-icon name="log-out-outline"></ion-icon>
-                    <ion-label routerLink="/login">CERRAR SESION</ion-label>
-                </ion-item>
-            </ion-list>
-        </div>
-    </ion-content>
+                    <ion-icon name="clipboard-outline"></ion-icon>
+                    <ion-label routerLink=""></ion-label>
+                  </ion-item>
+              </ion-list>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-item>
+        <!-- <ion-item (click)="salirUsuario()"> -->
+        <ion-item>
+          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-label routerLink="/login">CERRAR SESION</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
 </ion-menu>

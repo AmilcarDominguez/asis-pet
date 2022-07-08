@@ -77,7 +77,8 @@ const routes: Routes = [
   {
     path: 'guardar-peluqueria/:id/:co',
     loadChildren: () => import('./mascota/guardar-peluqueria/guardar-peluqueria.module').then( m => m.GuardarPeluqueriaPageModule)
-  }
+  },
+
 
 ];
 @NgModule({
